@@ -36,13 +36,16 @@
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
   .chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:5px 12px;border-radius:999px;font-size:14px}
   nav{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
-  nav .wrap{max-width:980px;margin:0 auto;display:flex;align-items:center;gap:4px;padding:0 12px}
-  nav .links{display:flex;gap:4px;overflow-x:auto;flex:1}
+  nav .wrap{max-width:980px;margin:0 auto;padding:0 12px}
+  nav .links{display:flex;gap:4px;overflow-x:auto}
   nav a{white-space:nowrap;padding:12px 10px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:600}
   nav a:hover{color:var(--accent)}
-  .langtog{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex-shrink:0;margin-left:8px}
-  .langtog button{border:0;background:transparent;color:var(--muted);font:600 13px/1 inherit;padding:7px 12px;cursor:pointer}
-  html[data-lang="en"] .langtog [data-set="en"], html[data-lang="zh"] .langtog [data-set="zh"]{background:var(--accent);color:#fff}
+  header{position:relative}
+  .langtog{position:absolute;top:16px;right:20px;display:inline-flex;padding:3px;gap:2px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px)}
+  .langtog button{border:0;background:transparent;color:#fff;font:600 14px/1 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;padding:8px 14px;border-radius:999px;cursor:pointer;min-height:36px}
+  .langtog button:hover{background:rgba(255,255,255,.14)}
+  .langtog button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  html[data-lang="en"] .langtog [data-set="en"], html[data-lang="zh"] .langtog [data-set="zh"]{background:#fff;color:#0d2a4a}
   main{max-width:980px;margin:0 auto;padding:12px 20px 60px}
   section{padding-top:28px;scroll-margin-top:50px}
   h2{font-size:24px;margin:0 0 4px;letter-spacing:-.01em}
@@ -91,6 +94,9 @@
 
 <header>
   <div class="wrap">
+    <div class="langtog" role="group" aria-label="Language / 语言">
+      <button type="button" data-set="en" aria-label="English">🌐 EN</button><button type="button" data-set="zh" aria-label="中文">中文</button>
+    </div>
     <h1><span lang="en">⛷️ Niseko Ski Trip</span><span lang="zh">⛷️ 二世谷滑雪之旅</span></h1>
     <p><span lang="en">Park Hyatt Niseko Hanazono · Hokkaido, Japan</span><span lang="zh">二世谷花园柏悦酒店 · 日本北海道</span></p>
     <div class="chips">
@@ -113,9 +119,6 @@
     <a href="#food"><span lang="en">Food</span><span lang="zh">餐饮</span></a>
     <a href="#budget"><span lang="en">Cost Calculator</span><span lang="zh">费用计算</span></a>
     <a href="#todo"><span lang="en">To-Do</span><span lang="zh">待办</span></a>
-  </div>
-  <div class="langtog" role="group" aria-label="Language / 语言">
-    <button type="button" data-set="en">EN</button><button type="button" data-set="zh">中文</button>
   </div>
 </div></nav>
 
