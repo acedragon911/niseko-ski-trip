@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Niseko Ski Trip · Jan 12–17, 2027</title>
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#0F1E3A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://upload.wikimedia.org">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <script>
   // pick language before paint: ?lang= → saved choice → browser language
   (function(){
@@ -17,19 +22,26 @@
 </script>
 <style>
   :root{
-    --bg:#f6f8fb; --card:#fff; --ink:#14202e; --muted:#5b6b7c; --line:#e3e9f0;
-    --accent:#1f5fa8; --accent-soft:#e8f0fa; --warn:#a15c00; --warn-soft:#fff4e0;
-    --ok:#1d7a46; --ok-soft:#e5f5ec; --fire:#c2410c; --fire-soft:#fff0e8;
+    --bg:#F6F7FA; --card:#FFFFFF; --ink:#0F1E3A; --muted:#55627A; --line:#E2E7EF;
+    --accent:#1E3A8A; --accent-soft:#E9EEFA; --warn:#9A5B00; --warn-soft:#FFF5E3;
+    --ok:#17663D; --ok-soft:#E4F4EA; --fire:#B43C0C; --fire-soft:#FFF0E7;
+    --gold:#A16207; --gold-line:#C9A24A; --gold-soft:#FBF4E4;
+    --shadow:0 1px 2px rgba(15,30,58,.04),0 8px 24px -12px rgba(15,30,58,.12);
+    --radius:16px; --serif:"Playfair Display","Songti SC","Noto Serif SC","STSong",Georgia,serif;
+    --sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    --ease:cubic-bezier(.2,.7,.2,1);
   }
   @media (prefers-color-scheme: dark){
-    :root{ --bg:#0f151c; --card:#17202a; --ink:#e7edf3; --muted:#9aabbc; --line:#26323f;
-      --accent:#7db3f0; --accent-soft:#1b2b3f; --warn:#f0b35c; --warn-soft:#33270f;
-      --ok:#6fd49b; --ok-soft:#14301f; --fire:#ff9a62; --fire-soft:#3a1d10; }
+    :root{ --bg:#0B1220; --card:#121B2E; --ink:#E8EDF6; --muted:#9DABC2; --line:#23314B;
+      --accent:#9DB8FF; --accent-soft:#18264A; --warn:#F0B35C; --warn-soft:#33270F;
+      --ok:#6FD49B; --ok-soft:#12301F; --fire:#FF9A62; --fire-soft:#3A1D10;
+      --gold:#E3BC66; --gold-line:#C9A24A; --gold-soft:#2A2213;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6); }
   }
   html[data-lang="en"] [lang="zh"], html[data-lang="zh"] [lang="en"]{display:none !important}
   *{box-sizing:border-box}
   body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink)}
-  header{background:linear-gradient(160deg,#0d2a4a,#1f5fa8 60%,#6fa3d8);color:#fff;padding:56px 20px 40px}
+  header{color:#fff}
   header .wrap{max-width:980px;margin:0 auto}
   header h1{margin:0 0 6px;font-size:clamp(28px,5vw,44px);letter-spacing:-.02em}
   header p{margin:0;opacity:.9}
@@ -77,7 +89,7 @@
   .pax{font-weight:700}
   .bar{display:flex;gap:4px;margin:10px 0 4px}
   .bar div{flex:1;border-radius:8px;padding:10px 6px;text-align:center;font-size:13px}
-  .bar .n8{background:var(--accent);color:#fff}
+  .bar .n8{background:var(--accent);color:var(--card)}
   .bar .n5{background:var(--accent-soft);color:var(--accent)}
   .bar .out{background:var(--line);color:var(--muted)}
   .calc{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));align-items:end}
@@ -122,6 +134,90 @@
   .badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(201,168,106,.55);color:#f0e2c4;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;background:rgba(201,168,106,.08)}
   .ad a{color:#e8c98a}
   @media (max-width:600px){ .ad h3{font-size:23px} .ad{padding:20px 16px} }
+
+  /* ===================== Redesign v2 (navy + gold, editorial) ===================== */
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  h1,h2,h3{font-family:var(--serif);letter-spacing:-.01em}
+  h2{font-size:clamp(26px,3.4vw,34px);font-weight:600;margin:0 0 6px;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:28px;height:2px;background:var(--gold-line);border-radius:2px;flex:none}
+  h3{font-weight:600}
+  .ico{flex:none;vertical-align:-3px}
+  section{padding-top:44px}
+  main{max-width:1040px}
+  .card{border-radius:var(--radius);box-shadow:var(--shadow);border-color:var(--line)}
+  .note,.fire{border-radius:12px}
+  a{text-underline-offset:3px}
+  :focus-visible{outline:2px solid var(--gold-line);outline-offset:2px;border-radius:6px}
+  button,.btn,a.call{cursor:pointer}
+
+  /* hero */
+  header.hero{position:relative;padding:0;color:#fff;min-height:min(86svh,760px);display:flex;align-items:flex-end;overflow:hidden;background:#0F1E3A}
+  header.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform:scale(1.04);transition:transform 1.6s var(--ease)}
+  header.hero.loaded .bg{transform:scale(1)}
+  header.hero::after{content:"";position:absolute;inset:0;background:
+      linear-gradient(180deg,rgba(11,18,32,.45) 0%,rgba(11,18,32,0) 28%,rgba(11,18,32,.25) 50%,rgba(11,18,32,.82) 78%,rgba(11,18,32,.94) 100%)}
+  header.hero .wrap{position:relative;z-index:2;width:100%;max-width:1040px;margin:0 auto;padding:96px 20px 34px}
+  header.hero .langtog{position:absolute;top:18px;right:20px;z-index:3}
+  .hero .eyebrow .ico{color:#E9CF8F}
+  .hero .eyebrow{text-shadow:0 1px 10px rgba(0,0,0,.7);font:600 12px/1.2 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:8px}
+  .hero h1{font-size:clamp(40px,7vw,76px);line-height:1.02;font-weight:600;margin:10px 0 8px;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+  .hero .lede{font-size:clamp(16px,1.6vw,19px);opacity:.92;margin:0 0 18px;max-width:620px}
+  .hero .chips{margin-top:0}
+  .hero .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .hero .credit{position:absolute;right:12px;bottom:8px;z-index:2;font-size:11px;opacity:.7}
+  .hero .credit a{color:#fff}
+  .countdown{display:flex;gap:10px;margin:22px 0 0;flex-wrap:wrap;align-items:stretch}
+  .countdown .unit{min-width:74px;padding:10px 12px;border-radius:14px;background:rgba(11,18,32,.45);border:1px solid rgba(233,207,143,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);text-align:center}
+  .countdown .num{display:block;font:600 30px/1 var(--serif);font-variant-numeric:tabular-nums;color:#fff}
+  .countdown .lbl{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#E9CF8F;margin-top:6px}
+  .countdown .msg{align-self:center;font-size:14px;opacity:.9;max-width:220px}
+  @media (max-width:600px){
+    header.hero{min-height:88svh}
+    header.hero .wrap{padding:80px 16px 28px}
+    header.hero::after{background:linear-gradient(180deg,rgba(11,18,32,.45) 0%,rgba(11,18,32,0) 22%,rgba(11,18,32,.55) 42%,rgba(11,18,32,.9) 70%,rgba(11,18,32,.96) 100%)}
+    header.hero .langtog{top:14px;right:14px}
+    .countdown .unit{min-width:0;flex:1;padding:9px 6px}
+    .countdown .num{font-size:24px}
+    .countdown .msg{flex-basis:100%;max-width:none}
+  }
+
+  /* nav */
+  nav{background:color-mix(in srgb,var(--card) 82%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px)}
+  nav a{position:relative;transition:color .2s var(--ease)}
+  nav a::after{content:"";position:absolute;left:10px;right:10px;bottom:6px;height:2px;border-radius:2px;background:var(--gold-line);transform:scaleX(0);transition:transform .25s var(--ease)}
+  nav a.active{color:var(--ink)}
+  nav a.active::after{transform:scaleX(1)}
+  nav a.sos-link{color:#c0392b}
+
+  /* reveal on scroll */
+  html.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s var(--ease),transform .55s var(--ease);transition-delay:var(--d,0ms)}
+  html.js .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){ html.js .reveal{opacity:1;transform:none;transition:none} }
+
+  /* snow forecast */
+  .snow-now{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-bottom:14px}
+  .snow-now .big{font:600 44px/1 var(--serif);font-variant-numeric:tabular-nums}
+  .snow-now .meta{color:var(--muted);font-size:14px}
+  .snow-days{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(92px,1fr);gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+  .sday{border:1px solid var(--line);border-radius:14px;padding:10px 8px;text-align:center;background:var(--bg)}
+  .sday.trip{border-color:var(--gold-line);background:var(--gold-soft)}
+  .sday .dow{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+  .sday .wx{color:var(--accent);margin:6px 0 2px}
+  .sday .cm{font:600 18px/1.1 var(--serif);color:var(--ink)}
+  .sday .cm small{font:500 11px var(--sans);color:var(--muted)}
+  .sday .tmp{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .skeleton{height:120px;border-radius:14px;background:linear-gradient(90deg,var(--line) 0%,var(--bg) 50%,var(--line) 100%);background-size:200% 100%;animation:sk 1.4s linear infinite}
+  @keyframes sk{to{background-position:-200% 0}}
+  @media (prefers-reduced-motion: reduce){ .skeleton{animation:none} }
+
+  /* dinner cards */
+  .dinner{position:relative;border-left:4px solid var(--line)}
+  .dinner[data-status="booked"]{border:2px solid var(--gold-line);border-left-width:4px;background:linear-gradient(180deg,var(--gold-soft),var(--card) 70%);box-shadow:0 0 0 4px color-mix(in srgb,var(--gold-line) 14%,transparent),var(--shadow)}
+  .dinner[data-status="booked"]::before{content:attr(data-booked-label);position:absolute;top:-11px;right:16px;background:var(--gold-line);color:#1b1405;font:700 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+  .legend{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+  .legend i{display:inline-block;width:22px;height:14px;border-radius:4px;border:2px solid var(--gold-line);background:var(--gold-soft)}
   .grid > .card{margin:0}
   .grid{margin:12px 0}
   .mobile-only{display:none}
@@ -164,35 +260,49 @@
 </head>
 <body>
 
-<header>
-  <div class="wrap">
-    <div class="langtog" role="group" aria-label="Language / 语言">
-      <button type="button" data-set="en" aria-label="English">🌐 EN</button><button type="button" data-set="zh" aria-label="中文">中文</button>
+<header class="hero">
+  <img class="bg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/2010-02.mt_yotei.jpg/1280px-2010-02.mt_yotei.jpg"
+       srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/2010-02.mt_yotei.jpg/960px-2010-02.mt_yotei.jpg 960w, https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/2010-02.mt_yotei.jpg/1280px-2010-02.mt_yotei.jpg 1280w, https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/2010-02.mt_yotei.jpg/1920px-2010-02.mt_yotei.jpg 1920w"
+       sizes="100vw" width="1920" height="1440" fetchpriority="high" decoding="async"
+       alt="Mt. Yotei under snow, seen from the Niseko ski slopes">
+  <div class="langtog" role="group" aria-label="Language / 语言">
+      <button type="button" data-set="en" aria-label="English"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg> EN</button><button type="button" data-set="zh" aria-label="中文">中文</button>
     </div>
-    <h1><span lang="en">⛷️ Niseko Ski Trip</span><span lang="zh">⛷️ 二世谷滑雪之旅</span></h1>
-    <p><span lang="en">Park Hyatt Niseko Hanazono · Hokkaido, Japan</span><span lang="zh">二世谷花园柏悦酒店 · 日本北海道</span></p>
+  <div class="wrap">
+    <div class="eyebrow"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg><span lang="en">Park Hyatt Niseko Hanazono · Hokkaido</span><span lang="zh">二世谷花园柏悦酒店 · 北海道</span></div>
+    <h1><span lang="en">Niseko Ski Trip</span><span lang="zh">二世谷滑雪之旅</span></h1>
+    <p class="lede"><span lang="en">Five nights of powder, onsen and very good dinners under Mt. Yotei.</span><span lang="zh">在羊蹄山下，五晚粉雪、温泉与美食。</span></p>
     <div class="chips">
-      <span class="chip"><span lang="en">📅 Tue Jan 12 → Sun Jan 17, 2027</span><span lang="zh">📅 2027年1月12日 → 17日</span></span>
-      <span class="chip"><span lang="en">🌙 5 nights</span><span lang="zh">🌙 5晚</span></span>
-      <span class="chip"><span lang="en">🛏️ Suite King + Double Room</span><span lang="zh">🛏️ 大床套房 + 双人房</span></span>
-      <span class="chip"><span lang="en">👥 8 people → 5 people</span><span lang="zh">👥 8人 → 5人</span></span>
-      <span class="chip"><span lang="en">🎆 Fireworks Sat Jan 16, 19:00</span><span lang="zh">🎆 1月16日（周六）19:00 烟花</span></span>
+      <span class="chip"><svg class="ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span lang="en">Tue Jan 12 → Sun Jan 17, 2027</span><span lang="zh">2027年1月12日 → 17日</span></span>
+      <span class="chip"><svg class="ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg><span lang="en">5 nights</span><span lang="zh">5晚</span></span>
+      <span class="chip"><svg class="ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg><span lang="en">Suite King + Double Room</span><span lang="zh">大床套房 + 双人房</span></span>
+      <span class="chip"><svg class="ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span lang="en">8 people → 5 people</span><span lang="zh">8人 → 5人</span></span>
+      <span class="chip"><svg class="ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10.7l-6.1 1.9L12 18.5l-1.9-5.9L4 10.7l6.1-1.9z"/><path d="M19 17v4M17 19h4"/></svg><span lang="en">Fireworks Sat Jan 16, 19:00</span><span lang="zh">1月16日（周六）19:00 烟花</span></span>
+    </div>
+    <div class="countdown" id="countdown" aria-label="Countdown to the trip">
+      <div class="unit"><span class="num" data-u="d">–</span><span class="lbl"><span lang="en">days</span><span lang="zh">天</span></span></div>
+      <div class="unit"><span class="num" data-u="h">–</span><span class="lbl"><span lang="en">hrs</span><span lang="zh">时</span></span></div>
+      <div class="unit"><span class="num" data-u="m">–</span><span class="lbl"><span lang="en">min</span><span lang="zh">分</span></span></div>
+      <div class="unit"><span class="num" data-u="s">–</span><span class="lbl"><span lang="en">sec</span><span lang="zh">秒</span></span></div>
+      <div class="msg" id="cdmsg"><span lang="en">until the 10:00 airport bus on Jan 12</span><span lang="zh">距1月12日10:00机场巴士出发</span></div>
     </div>
   </div>
+  <small class="credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:2010-02.mt_yotei.jpg" target="_blank" rel="noopener">Douglas P Perkins</a>, <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC BY 3.0</a></small>
 </header>
 
 <nav><div class="wrap">
   <div class="links">
     <a href="#overview"><span lang="en">Overview</span><span lang="zh">概览</span></a>
     <a href="#hours"><span lang="en">Hours</span><span lang="zh">时间</span></a>
+    <a href="#snow"><span lang="en">Snow</span><span lang="zh">雪况</span></a>
     <a href="#itinerary"><span lang="en">Itinerary</span><span lang="zh">行程</span></a>
     <a href="#passes"><span lang="en">Lift Passes</span><span lang="zh">缆车票</span></a>
     <a href="#rental"><span lang="en">Ski Rental</span><span lang="zh">雪具租赁</span></a>
     <a href="#map"><span lang="en">Trail Map</span><span lang="zh">雪道图</span></a>
-    <a href="#powder"><span lang="en">❄️ Powder</span><span lang="zh">❄️ 粉雪</span></a>
+    <a href="#powder"><span lang="en">Powder</span><span lang="zh">粉雪</span></a>
     <a href="#food"><span lang="en">Food</span><span lang="zh">餐饮</span></a>
     <a href="#budget"><span lang="en">Cost Calculator</span><span lang="zh">费用计算</span></a>
-    <a href="#sos"><span lang="en">🆘 Emergency</span><span lang="zh">🆘 紧急</span></a>
+    <a href="#sos" class="sos-link"><span lang="en">Emergency</span><span lang="zh">紧急</span></a>
     <a href="#todo"><span lang="en">To-Do</span><span lang="zh">待办</span></a>
   </div>
 </div></nav>
@@ -274,6 +384,16 @@
   </div>
 </section>
 
+<!-- SNOW -->
+<section id="snow">
+  <h2><span lang="en">Snow at Hanazono</span><span lang="zh">花园雪况</span></h2>
+  <p class="sub"><span lang="en">Live forecast for mid-mountain (800 m). Trip days are outlined in gold once they're within range (about Dec 28).</span><span lang="zh">山腰（800米）实时预报。行程日期进入预报范围后（约12月28日起）会以金色框标出。</span></p>
+  <div class="card" id="snowcard" aria-live="polite">
+    <div class="skeleton" id="snowskel"></div>
+  </div>
+  <p class="sub" style="font-size:13px"><span lang="en">Data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>. For the full picture also check <a href="https://www.snow-forecast.com/resorts/Niseko/6day/mid" target="_blank" rel="noopener">Snow-Forecast</a> and the <a href="https://niseko.nadare.info/" target="_blank" rel="noopener">avalanche report</a>.</span><span lang="zh">数据：<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>。也可参考 <a href="https://www.snow-forecast.com/resorts/Niseko/6day/mid" target="_blank" rel="noopener">Snow-Forecast</a> 和<a href="https://niseko.nadare.info/" target="_blank" rel="noopener">雪崩信息</a>。</span></p>
+</section>
+
 <!-- ITINERARY -->
 <section id="itinerary">
   <h2><span lang="en">Day-by-day</span><span lang="zh">每日行程</span></h2>
@@ -290,9 +410,9 @@
         <li>晚餐约19:00：酒店内法餐 Molière Montagne（或 China Kitchen）。见<a href="#food">晚餐安排</a>。</li></ul></div></div>
     <div class="day"><div class="d"><b><span lang="en">Wed Jan 13</span><span lang="zh">1月13日 周三</span></b><span><span class="pax">👥 8</span> · <span lang="en">Ski day 1</span><span lang="zh">滑雪第1天</span></span></div>
       <div lang="en">Hotel breakfast → full group skis Hanazono, warm-up laps. Lunch on the mountain.
-        <ul><li>Last night with all 8. Low-key dinner at 19:30: AFURI ramen + dumplings in Hirafu.</li></ul></div>
+        <ul><li>Last night with all 8. Low-key dinner at 19:30: AFURI in Hirafu, yuzu ramen + yuzu chicken karaage.</li></ul></div>
       <div lang="zh">酒店早餐 → 全员在花园热身滑雪。午餐在山上。
-        <ul><li>8人最后一晚。19:30在比罗夫 AFURI 吃拉面和煎饺，轻松一点。</li></ul></div></div>
+        <ul><li>8人最后一晚。19:30在比罗夫 AFURI 吃柚子拉面和柚子炸鸡，轻松一点。</li></ul></div></div>
     <div class="day"><div class="d"><b><span lang="en">Thu Jan 14</span><span lang="zh">1月14日 周四</span></b><span><span class="pax">👥 5</span> · <span lang="en">Ski day 2</span><span lang="zh">滑雪第2天</span></span></div>
       <div lang="en">3 people leave (check-out timing TBD). The other 5 ski. With an All Mountain pass, cross over to Hirafu.
         <ul><li>⭐ Lunch at <b>NEST813</b>, Ace Gondola summit station, Hirafu (must-do).</li>
@@ -422,7 +542,7 @@
 
 <!-- POWDER -->
 <section id="powder">
-  <h2>❄️ <span lang="en">Powder &amp; the gates</span><span lang="zh">粉雪与闸门</span></h2>
+  <h2><span lang="en">Powder &amp; the gates</span><span lang="zh">粉雪与闸门</span></h2>
   <p class="sub"><span lang="en">Side idea for beginner / intermediate skiers who want to try real Niseko powder. Optional; not on a fixed day.</span><span lang="zh">给想体验二世谷真正粉雪的初/中级滑雪者的额外建议。可选，不固定在哪一天。</span></p>
 
   <div class="note" lang="en"><b>Read first:</b> the gates lead <b>outside</b> the resort. That terrain is not groomed, patrolled or avalanche-controlled. For beginners and intermediates, the safe way through a gate is <b>with a guide</b>. Without one, stay inside the boundary.</div>
@@ -503,6 +623,7 @@
     </ul>
   </div>
 
+  <p class="legend"><i></i><span lang="en">Gold border = booked and confirmed</span><span lang="zh">金色边框 = 已预订确认</span></p>
   <div class="card" lang="en">
     <p style="margin:0"><b>Dinner rules:</b> Park Hyatt / top-rated first. No budget limit on the 5-person nights. Keep the 8-person nights low-key and budget-friendly, so the group isn't stuck with long courses.</p>
   </div>
@@ -511,7 +632,7 @@
   </div>
 
   <!-- Jan 12 -->
-  <div class="card">
+  <div class="card dinner" data-dinner="jan12" data-status="planned">
     <h3 style="margin-top:0"><span lang="en">Tue Jan 12</span><span lang="zh">1月12日 周二</span> · 👥 8 · Molière Montagne</h3>
     <p class="sub" style="margin:0 0 8px"><span class="tag t-warn"><span lang="en">Not booked: call for 8</span><span lang="zh">未预订：8人需电话</span></span></p>
     <ul lang="en" style="margin:0">
@@ -529,18 +650,20 @@
   </div>
 
   <!-- Jan 13 -->
-  <div class="card">
+  <div class="card dinner" data-dinner="jan13" data-status="planned">
     <h3 style="margin-top:0"><span lang="en">Wed Jan 13</span><span lang="zh">1月13日 周三</span> · 👥 8 · AFURI Ramen + Dumpling</h3>
     <p class="sub" style="margin:0 0 8px"><span class="tag t-warn"><span lang="en">Not booked: slots open</span><span lang="zh">未预订：有空位</span></span></p>
     <ul lang="en" style="margin:0">
-      <li>Setsu Niseko, Hirafu. Yuzu shio ramen, winged gyoza, open kitchen, full bar. The low-key night. About ¥2,000–3,000 per person.</li>
+      <li>Setsu Niseko, Hirafu. Open kitchen, full bar. The low-key night. About ¥2,000–3,000 per person.</li>
+      <li>⭐ <b>Order:</b> yuzu shio ramen + <b>yuzu chicken karaage</b> (plus winged gyoza for the table).</li>
       <li><b>Time:</b> 19:30 · <b>Open for 8 (Nov 24):</b> 17:00, 17:30, 19:30, 20:00, 20:30, 21:00 (18:00–19:00 not available for 8)</li>
       <li><b>Book:</b> TableCheck (1–16 people, up to 2 hrs before). ¥500/person booking fee, not refundable. Card required, cashless only. Cancelling within 24 hrs costs ¥3,000/person. 0136-55-7756 · niseko@afuri.com</li>
       <li><b>Why not China Kitchen:</b> live-checked, no availability on Jan 13 for any party size, including the Niwa private rooms and Round Table.</li>
       <li><b>Backups (all live-checked for 8):</b> Park Hyatt Robata 19:15 · Olivio 19:15 · The Lounge 19:15 · Mountain Lounge (Shiraoi/Kobe wagyu shabu-shabu, ¥9,680 / ¥21,230) 19:30 · Zuma Niseko, Hirafu, 19:00 exactly (private room for 12 by email only: infoniseko@zumarestaurant.com)</li>
     </ul>
     <ul lang="zh" style="margin:0">
-      <li>比罗夫 Setsu Niseko。柚子盐拉面、带翅煎饺、开放式厨房、酒吧齐全。轻松的一晚，每人约¥2,000–3,000。</li>
+      <li>比罗夫 Setsu Niseko。开放式厨房、酒吧齐全。轻松的一晚，每人约¥2,000–3,000。</li>
+      <li>⭐ <b>必点：</b>柚子盐拉面 + <b>柚子炸鸡（唐扬）</b>（再来几份带翅煎饺一起分）。</li>
       <li><b>时间：</b>19:30 · <b>8人空位（11月24日）：</b>17:00、17:30、19:30、20:00、20:30、21:00（18:00–19:00 8人无位）</li>
       <li><b>预订：</b>TableCheck（1–16人，最晚提前2小时）。每人¥500预订费，不退。需信用卡，仅限无现金支付。24小时内取消每人收¥3,000。0136-55-7756 · niseko@afuri.com</li>
       <li><b>为什么不选 China Kitchen：</b>已实时查询，1月13日任何人数都无位，包括 Niwa 包间和圆桌。</li>
@@ -549,7 +672,7 @@
   </div>
 
   <!-- Jan 14 -->
-  <div class="card">
+  <div class="card dinner" data-dinner="jan14" data-status="planned">
     <h3 style="margin-top:0"><span lang="en">Thu Jan 14</span><span lang="zh">1月14日 周四</span> · 👥 5 · Tempura Araki</h3>
     <p class="sub" style="margin:0 0 8px"><span class="tag t-fire"><span lang="en">Unverified availability</span><span lang="zh">空位未确认</span></span></p>
     <ul lang="en" style="margin:0">
@@ -569,7 +692,7 @@
   </div>
 
   <!-- Jan 15 -->
-  <div class="card">
+  <div class="card dinner" data-dinner="jan15" data-status="planned">
     <h3 style="margin-top:0"><span lang="en">Fri Jan 15</span><span lang="zh">1月15日 周五</span> · 👥 5 · HITO by TACUBO</h3>
     <p class="sub" style="margin:0 0 8px"><span class="tag t-warn"><span lang="en">Not booked: wide open</span><span lang="zh">未预订：空位充足</span></span></p>
     <ul lang="en" style="margin:0">
@@ -587,7 +710,7 @@
   </div>
 
   <!-- Jan 16 -->
-  <div class="card">
+  <div class="card dinner" data-dinner="jan16" data-status="planned">
     <h3 style="margin-top:0"><span lang="en">Sat Jan 16</span><span lang="zh">1月16日 周六</span> · 👥 5 · Sushi Mitsukawa · 🎆</h3>
     <p class="sub" style="margin:0 0 8px"><span class="tag t-warn"><span lang="en">Not booked: only 20:00 left</span><span lang="zh">未预订：仅剩20:00</span></span></p>
     <ul lang="en" style="margin:0">
@@ -687,7 +810,7 @@
 
 <!-- EMERGENCY -->
 <section id="sos">
-  <h2>🆘 <span lang="en">In case of emergency</span><span lang="zh">紧急情况</span></h2>
+  <h2><span lang="en">In case of emergency</span><span lang="zh">紧急情况</span></h2>
   <p class="sub"><span lang="en">Tap a number to call. Save this section on your phone before the trip.</span><span lang="zh">点击号码即可拨打。出发前请把这部分存到手机里。</span></p>
 
   <div class="card sos">
@@ -769,6 +892,101 @@
 </footer>
 
 <script>
+
+  // ---- mark JS available (for reveal) ----
+  document.documentElement.classList.add('js');
+
+  // ---- hero image fade-in ----
+  (function(){ const h=document.querySelector('header.hero'), im=h&&h.querySelector('.bg');
+    if(!im) return; if(im.complete) h.classList.add('loaded'); else im.addEventListener('load',()=>h.classList.add('loaded')); })();
+
+  // ---- countdown to Jan 12 2027 10:00 JST ----
+  (function(){
+    const start=new Date('2027-01-12T10:00:00+09:00'), end=new Date('2027-01-17T16:00:00+09:00');
+    const el=document.getElementById('countdown'); if(!el) return;
+    const u=k=>el.querySelector('[data-u="'+k+'"]'), msg=document.getElementById('cdmsg');
+    function tick(){
+      const now=new Date();
+      if(now>=start){
+        el.querySelectorAll('.unit').forEach(x=>x.style.display='none');
+        msg.innerHTML = now<end
+          ? '<span lang="en">We\'re in Niseko. Go ski! 🎿</span><span lang="zh">我们在二世谷了，去滑雪吧！🎿</span>'
+          : '<span lang="en">Hope it was epic. Same time next year?</span><span lang="zh">希望玩得尽兴，明年再来？</span>';
+        return clearInterval(t);
+      }
+      let s=Math.floor((start-now)/1000);
+      const d=Math.floor(s/86400); s%=86400; const h=Math.floor(s/3600); s%=3600; const m=Math.floor(s/60); s%=60;
+      u('d').textContent=d; u('h').textContent=String(h).padStart(2,'0'); u('m').textContent=String(m).padStart(2,'0'); u('s').textContent=String(s).padStart(2,'0');
+    }
+    const t=setInterval(tick,1000); tick();
+  })();
+
+  // ---- dinner booked labels ----
+  document.querySelectorAll('.dinner').forEach(c=>{ c.dataset.bookedLabel = document.documentElement.dataset.lang==='zh' ? '已预订 ✓' : 'Booked ✓'; });
+
+  // ---- scroll reveal ----
+  (function(){
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+    const els=document.querySelectorAll('main section > h2, main section > .sub, main .card, main .note, main .fire, main .ad, main .legend');
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{rootMargin:'0px 0px -8% 0px',threshold:.06});
+    els.forEach(el=>{
+      const r=el.getBoundingClientRect(); if(r.top<innerHeight) return; // already on screen: leave visible
+      el.classList.add('reveal');
+      const sib=el.parentElement?[...el.parentElement.children].filter(x=>x.classList.contains('card')):[];
+      const i=sib.indexOf(el); if(el.parentElement.classList.contains('grid') && i>0) el.style.setProperty('--d',(i*70)+'ms');
+      io.observe(el);
+    });
+  })();
+
+  // ---- active nav link ----
+  (function(){
+    const links=[...document.querySelectorAll('nav .links a')], map=new Map(links.map(a=>[a.getAttribute('href').slice(1),a]));
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ links.forEach(a=>a.classList.remove('active')); const a=map.get(e.target.id); if(a){ a.classList.add('active'); const box=a.parentElement, l=a.offsetLeft, r=l+a.offsetWidth; if(l<box.scrollLeft||r>box.scrollLeft+box.clientWidth) box.scrollTo({left:l-24,behavior:'smooth'}); } } }),{rootMargin:'-45% 0px -50% 0px'});
+    map.forEach((a,id)=>{ const sec=document.getElementById(id); if(sec) io.observe(sec); });
+  })();
+
+  // ---- live snow forecast (Open-Meteo, no key) ----
+  (function(){
+    const card=document.getElementById('snowcard'); if(!card) return;
+    const W={sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+      cloud:'<path d="M17.5 19H9a7 7 0 1 1 6.7-9h1.8a4.5 4.5 0 1 1 0 9z"/>',
+      snow:'<path d="M20 17.6A5 5 0 0 0 18 8h-1.3A8 8 0 1 0 4 16.3"/><path d="M8 15h.01M8 19h.01M12 17h.01M12 21h.01M16 15h.01M16 19h.01"/>',
+      rain:'<path d="M20 16.6A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.3"/><path d="M16 14v6M8 14v6M12 16v6"/>',
+      fog:'<path d="M4 14h16M4 18h12M6 10h14"/>'};
+    const kind=c=> c<=1?'sun': c<=3?'cloud': c<=48?'fog': (c>=71&&c<=77)||c==85||c==86?'snow': 'rain';
+    const LBL={en:{sun:'Clear',cloud:'Cloudy',fog:'Fog',snow:'Snow',rain:'Rain / sleet'},zh:{sun:'晴',cloud:'多云',fog:'雾',snow:'雪',rain:'雨 / 雨夹雪'}};
+    const svg=(k,s)=>'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+W[k]+'</svg>';
+    const url='https://api.open-meteo.com/v1/forecast?latitude=42.889&longitude=140.712&elevation=800'
+      +'&daily=weather_code,temperature_2m_max,temperature_2m_min,snowfall_sum&current=temperature_2m,weather_code,snow_depth,wind_speed_10m'
+      +'&timezone=Asia%2FTokyo&forecast_days=16';
+    let data=null;
+    function render(){
+      if(!data) return;
+      const L=document.documentElement.dataset.lang==='zh'?'zh':'en', c=data.current, d=data.daily;
+      const dowEN=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], dowZH=['周日','周一','周二','周三','周四','周五','周六'];
+      const week=d.snowfall_sum.slice(0,7).reduce((a,b)=>a+(b||0),0);
+      let html='<div class="snow-now"><div class="big">'+Math.round(c.temperature_2m)+'°C</div>'
+        +'<div><div style="display:flex;align-items:center;gap:8px;font-weight:600">'+svg(kind(c.weather_code),22)+LBL[L][kind(c.weather_code)]+'</div>'
+        +'<div class="meta">'+(L==='zh'?'当前 · 风速 ':'Now · wind ')+Math.round(c.wind_speed_10m)+' km/h'
+        +(c.snow_depth!=null?(L==='zh'?' · 积雪 ':' · snow depth ')+Math.round(c.snow_depth*100)+' cm':'')+'</div></div>'
+        +'<div><div class="big" style="font-size:32px">'+Math.round(week)+' cm</div><div class="meta">'+(L==='zh'?'未来7天降雪':'new snow, next 7 days')+'</div></div></div>'
+        +'<div class="snow-days" role="list">';
+      d.time.forEach((t,i)=>{
+        const trip=t>='2027-01-12'&&t<='2027-01-17', parts=t.split('-');
+        const label=(L==='zh'?dowZH:dowEN)[new Date(t+'T00:00:00Z').getUTCDay()];
+        const md=(+parts[1])+'/'+(+parts[2]);
+        html+='<div class="sday'+(trip?' trip':'')+'" role="listitem"><div class="dow">'+label+' '+md+'</div>'
+          +'<div class="wx">'+svg(kind(d.weather_code[i]),22)+'</div>'
+          +'<div class="cm">'+Math.round(d.snowfall_sum[i]||0)+'<small> cm</small></div>'
+          +'<div class="tmp">'+Math.round(d.temperature_2m_max[i])+'° / '+Math.round(d.temperature_2m_min[i])+'°</div></div>';
+      });
+      card.innerHTML=html+'</div>';
+    }
+    fetch(url).then(r=>{ if(!r.ok) throw 0; return r.json(); }).then(j=>{ data=j; render(); })
+      .catch(()=>{ card.innerHTML='<p style="margin:0"><span lang="en">Forecast unavailable right now. Try <a href="https://www.snow-forecast.com/resorts/Niseko/6day/mid">Snow-Forecast</a>.</span><span lang="zh">暂时无法获取预报，请查看 <a href="https://www.snow-forecast.com/resorts/Niseko/6day/mid">Snow-Forecast</a>。</span></p>'; });
+    window.__rerenderSnow=render;
+  })();
+
   const TITLES = { en:'Niseko Ski Trip · Jan 12–17, 2027', zh:'二世谷滑雪之旅 · 2027年1月12–17日' };
   function setLang(l){
     const h = document.documentElement;
@@ -776,6 +994,8 @@
     document.title = TITLES[l];
     document.querySelectorAll('option[data-en]').forEach(o => o.textContent = o.dataset[l]);
     localStorage.setItem('lang', l);
+    document.querySelectorAll('.dinner').forEach(c=>{ c.dataset.bookedLabel = l==='zh' ? '已预订 ✓' : 'Booked ✓'; });
+    if(window.__rerenderSnow) window.__rerenderSnow();
   }
   document.querySelectorAll('.langtog button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.set)));
   setLang(document.documentElement.dataset.lang);
