@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Niseko Ski Trip · Jan 12–17, 2027</title>
+<meta name="robots" content="noindex">
+<style>
+  :root{
+    --bg:#f6f8fb; --card:#fff; --ink:#14202e; --muted:#5b6b7c; --line:#e3e9f0;
+    --accent:#1f5fa8; --accent-soft:#e8f0fa; --warn:#a15c00; --warn-soft:#fff4e0;
+    --ok:#1d7a46; --ok-soft:#e5f5ec; --fire:#c2410c; --fire-soft:#fff0e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0f151c; --card:#17202a; --ink:#e7edf3; --muted:#9aabbc; --line:#26323f;
+      --accent:#7db3f0; --accent-soft:#1b2b3f; --warn:#f0b35c; --warn-soft:#33270f;
+      --ok:#6fd49b; --ok-soft:#14301f; --fire:#ff9a62; --fire-soft:#3a1d10; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;background:var(--bg);color:var(--ink)}
+  header{background:linear-gradient(160deg,#0d2a4a,#1f5fa8 60%,#6fa3d8);color:#fff;padding:56px 20px 40px}
+  header .wrap{max-width:980px;margin:0 auto}
+  header h1{margin:0 0 6px;font-size:clamp(28px,5vw,44px);letter-spacing:-.02em}
+  header p{margin:0;opacity:.9}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:5px 12px;border-radius:999px;font-size:14px}
+  nav{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+  nav .wrap{max-width:980px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:0 12px}
+  nav a{white-space:nowrap;padding:12px 10px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:600}
+  nav a:hover{color:var(--accent)}
+  main{max-width:980px;margin:0 auto;padding:12px 20px 60px}
+  section{padding-top:28px}
+  h2{font-size:24px;margin:0 0 4px;letter-spacing:-.01em}
+  h3{font-size:17px;margin:22px 0 8px}
+  .sub{color:var(--muted);margin:0 0 16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:12px 0}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .stat b{display:block;font-size:22px}
+  .stat span{color:var(--muted);font-size:14px}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .scroll{overflow-x:auto}
+  .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .t-ok{background:var(--ok-soft);color:var(--ok)}
+  .t-warn{background:var(--warn-soft);color:var(--warn)}
+  .t-info{background:var(--accent-soft);color:var(--accent)}
+  .t-fire{background:var(--fire-soft);color:var(--fire)}
+  .note{border-left:4px solid var(--warn);background:var(--warn-soft);padding:12px 14px;border-radius:8px;margin:12px 0}
+  .fire{border-left:4px solid var(--fire);background:var(--fire-soft);padding:14px 16px;border-radius:8px;margin:12px 0}
+  a{color:var(--accent)}
+  .day{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .day:last-child{border-bottom:0}
+  .day .d b{display:block;font-size:18px}
+  .day .d span{color:var(--muted);font-size:14px}
+  .day ul{margin:6px 0 0;padding-left:18px}
+  .pax{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+  .bar{display:flex;gap:4px;margin:10px 0 4px}
+  .bar div{flex:1;border-radius:8px;padding:10px 6px;text-align:center;font-size:13px}
+  .bar .n8{background:var(--accent);color:#fff}
+  .bar .n5{background:var(--accent-soft);color:var(--accent)}
+  .bar .out{background:var(--line);color:var(--muted)}
+  .calc{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));align-items:end}
+  label{font-size:13px;color:var(--muted);font-weight:600;display:block;margin-bottom:4px}
+  select,input{width:100%;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+  .total{font-size:28px;font-weight:800}
+  .map img{width:100%;border-radius:10px;border:1px solid var(--line)}
+  ul.check{list-style:none;padding:0;margin:0}
+  ul.check li{padding:7px 0;border-bottom:1px solid var(--line)}
+  ul.check li:last-child{border-bottom:0}
+  footer{color:var(--muted);font-size:13px;text-align:center;padding:30px 20px}
+  @media (max-width:560px){ .day{grid-template-columns:1fr;gap:4px} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>⛷️ Niseko Ski Trip</h1>
+    <p>Park Hyatt Niseko Hanazono · Hokkaido, Japan</p>
+    <div class="chips">
+      <span class="chip">📅 Tue Jan 12 → Sun Jan 17, 2027</span>
+      <span class="chip">🌙 5 nights</span>
+      <span class="chip">🛏️ Suite King + Double Room</span>
+      <span class="chip">👥 8 people → 5 people</span>
+      <span class="chip">🎆 Fireworks Sat Jan 16</span>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#overview">Overview</a>
+  <a href="#itinerary">Itinerary</a>
+  <a href="#passes">Lift Passes</a>
+  <a href="#rental">Ski Rental</a>
+  <a href="#map">Trail Map</a>
+  <a href="#food">Food</a>
+  <a href="#budget">Cost Calculator</a>
+  <a href="#todo">To-Do</a>
+</div></nav>
+
+<main>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <h2>Overview</h2>
+  <p class="sub">The whole trip at a glance.</p>
+  <div class="grid">
+    <div class="card stat"><b>Park Hyatt Niseko Hanazono</b><span>Ski-in / ski-out at the Hanazono base · <a href="https://www.hyatt.com/en-US/hotel/japan/park-hyatt-niseko-hanazono/ctsph">hotel site</a> · +81 136 27 1234</span></div>
+    <div class="card stat"><b>Jan 12 – Jan 17, 2027</b><span>Check in Tue Jan 12 · Check out Sun Jan 17</span></div>
+    <div class="card stat"><b>2 rooms</b><span>Suite King Room + Double Room</span></div>
+    <div class="card stat"><b>Peak season</b><span>All dates fall in peak lift pricing (Dec 24 – Feb 28)</span></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">People per night</h3>
+    <div class="bar">
+      <div class="n8">Tue 12<br><b>8</b></div>
+      <div class="n8">Wed 13<br><b>8</b></div>
+      <div class="n5">Thu 14<br><b>5</b></div>
+      <div class="n5">Fri 15<br><b>5</b></div>
+      <div class="n5">Sat 16 🎆<br><b>5</b></div>
+      <div class="out">Sun 17<br>check out</div>
+    </div>
+    <div class="note"><b>Check with the hotel:</b> 8 people across a Suite King and a Double Room on Jan 12–13 is more than those rooms usually hold. Ask Park Hyatt about extra beds or rollaways, or book a third room for those 2 nights. Also tell them the group drops to 5 from Jan 14.</div>
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section id="itinerary">
+  <h2>Day-by-day</h2>
+  <p class="sub">Breakfast at the hotel, lunch on the slopes, dinner below (bookings still being checked).</p>
+  <div class="card">
+    <div class="day"><div class="d"><b>Tue Jan 12</b><span><span class="pax">👥 8</span></span></div>
+      <div><b>Arrival day.</b> Travel from New Chitose (CTS) to Hanazono, about 2–2.5 hrs by road. Check in.
+        <ul><li>Pick up rental gear at DIAMOND X SPORT in the hotel. Pickup from 3 pm the day before your rental starts is free.</li>
+        <li>Optional: night skiing at Hanazono if everyone has energy.</li>
+        <li>Dinner: see <a href="#food">dinner plan</a>.</li></ul></div></div>
+    <div class="day"><div class="d"><b>Wed Jan 13</b><span><span class="pax">👥 8</span> · Ski day 1</span></div>
+      <div>Hotel breakfast → full group skis Hanazono, warm-up laps. Lunch on the mountain.
+        <ul><li>Last night with all 8. Plan a bigger group dinner and book early.</li></ul></div></div>
+    <div class="day"><div class="d"><b>Thu Jan 14</b><span><span class="pax">👥 5</span> · Ski day 2</span></div>
+      <div>3 people leave (check-out timing TBD). The other 5 ski. With an All Mountain pass, cross over to Hirafu.
+        <ul><li>Lunch on the slopes in Hirafu or back at Hanazono.</li></ul></div></div>
+    <div class="day"><div class="d"><b>Fri Jan 15</b><span><span class="pax">👥 5</span> · Ski day 3</span></div>
+      <div>Explore further: Niseko Village and Annupuri (All Mountain pass only). Go early on a powder day.</div></div>
+    <div class="day"><div class="d"><b>Sat Jan 16</b><span><span class="pax">👥 5</span> · Ski day 4 · <span class="tag t-fire">🎆 Fireworks</span></span></div>
+      <div>Last full ski day. <b>Hanazono "Fireworks Saturday"</b> at the Hanazono base in the evening. Plan dinner around it.
+        <ul><li>Return rental gear by 10 am the next day (free late return at DIAMOND X).</li></ul></div></div>
+    <div class="day"><div class="d"><b>Sun Jan 17</b><span>Check out</span></div>
+      <div>Breakfast, return gear, check out, transfer to CTS.</div></div>
+  </div>
+
+  <div class="fire">
+    <b>🎆 Hanazono "Fireworks Saturday" 2026–27: Sat Jan 16, 2027</b><br>
+    Last winter, Hanazono set off fireworks every Saturday of the night-skiing season (Dec 13, 2025 – Mar 21, 2026). The 2026–27 dates and start time are not posted yet, so check the
+    <a href="https://hanazononiseko.com/en/winter/events">Hanazono events page</a> closer to the trip. The show is short (about 5 minutes), so book dinner either before it or right after it. It is visible from the hotel and the base area. The show can be postponed if the weather is bad.
+  </div>
+</section>
+
+<!-- PASSES -->
+<section id="passes">
+  <h2>Lift passes</h2>
+  <p class="sub">2026–27 <b>peak</b> prices (Dec 24 – Feb 28), in yen. Online is cheaper than buying at the counter. Source: <a href="https://hanazononiseko.com/en/winter/resort/lift-tickets">Hanazono official lift tickets</a>.</p>
+
+  <div class="grid">
+    <div class="card"><span class="tag t-info">Best for this trip</span>
+      <h3 style="margin-top:8px">Niseko United All Mountain</h3>
+      <p style="margin:0">Covers all 4 resorts: Hanazono, Grand Hirafu, Niseko Village and Annupuri. Worth it if the group of 5 wants to explore on Jan 14–16.</p></div>
+    <div class="card"><span class="tag t-ok">Cheaper</span>
+      <h3 style="margin-top:8px">Hanazono + Hirafu</h3>
+      <p style="margin:0">About 60% of Niseko United's terrain. Hanazono and Hirafu connect on the mountain. It also has a night pass and a PM 4-hour ticket.</p></div>
+  </div>
+
+  <div class="card scroll">
+    <h3 style="margin-top:0">Adult: online price / counter price</h3>
+    <p class="sub" style="margin:0 0 8px">The first online purchase adds a ¥500 keycard per person. It is not refundable and can be reloaded later.</p>
+    <table>
+      <tr><th>Days</th><th class="num">All Mountain online</th><th class="num">All Mountain counter</th><th class="num">Hanazono+Hirafu online</th><th class="num">Hanazono+Hirafu counter</th></tr>
+      <tr><td>1 day</td><td class="num">¥12,800</td><td class="num">¥13,500</td><td class="num">¥11,800</td><td class="num">¥12,500</td></tr>
+      <tr><td>2 days</td><td class="num">¥25,100</td><td class="num">¥26,500</td><td class="num">¥23,200</td><td class="num">¥24,500</td></tr>
+      <tr><td>3 days</td><td class="num">¥37,500</td><td class="num">¥39,500</td><td class="num">¥34,600</td><td class="num">¥36,500</td></tr>
+      <tr><td><b>4 days</b></td><td class="num"><b>¥49,800</b></td><td class="num">¥52,500</td><td class="num"><b>¥46,000</b></td><td class="num">¥48,500</td></tr>
+      <tr><td>5 days</td><td class="num">¥62,200</td><td class="num">¥65,500</td><td class="num">¥57,400</td><td class="num">¥60,500</td></tr>
+      <tr><td>PM 4 hours</td><td class="num">n/a</td><td class="num">n/a</td><td class="num">¥8,400</td><td class="num">¥8,900</td></tr>
+      <tr><td>Night skiing</td><td class="num">n/a</td><td class="num">n/a</td><td class="num">¥6,200</td><td class="num">¥6,900</td></tr>
+    </table>
+  </div>
+
+
+  <div class="note"><b>Suggestion:</b> Buy <b>4-day All Mountain passes online</b> (Jan 13–16) for the 5 people staying the whole trip: ¥49,800 each. The 3 people leaving on Jan 14 only need <b>1 or 2 days of Hanazono+Hirafu</b>. Buy online before arrival to skip the line at the Hanazono 308 counter.</div>
+</section>
+
+<!-- RENTAL -->
+<section id="rental">
+  <h2>Ski rental</h2>
+  <p class="sub">Adult prices in yen for 2026–27. Poles come with skis unless noted.</p>
+
+  <div class="card scroll">
+    <table>
+      <tr><th>Shop</th><th>Where</th><th class="num">Skis + boots, 1 day</th><th class="num">3 days</th><th class="num">Helmet, 3 days</th><th>Notes</th></tr>
+      <tr><td><b>DIAMOND X SPORT</b> <span class="tag t-info">In hotel</span></td><td>Inside Park Hyatt</td><td class="num">¥14,500</td><td class="num">¥43,500</td><td class="num">¥6,600</td><td>Premium gear only. Free pickup from 3 pm the day before, free return by 10 am the day after, free hot wax. Tel +81 136-27-1264</td></tr>
+      <tr><td><b>Niseko Sports</b>, Premium</td><td>Hanazono 308 (base)</td><td class="num">¥10,500</td><td class="num">¥24,500</td><td class="num">¥5,000</td><td>Free overnight storage, free hot wax, gear swaps allowed. Tel +81 136-23-0911</td></tr>
+      <tr><td><b>Niseko Sports</b>, Economy</td><td>Hanazono 308 (base)</td><td class="num">¥8,500</td><td class="num">¥21,000</td><td class="num">¥5,000</td><td>Cheapest option at the base</td></tr>
+      <tr><td><b>Rhythm Japan</b>, Standard</td><td>Hirafu (no Hanazono shop)</td><td class="num">¥9,500</td><td class="num">¥22,200</td><td class="num">¥5,600</td><td>10% off if booked 48 hrs ahead. Free first-day shuttle to Hanazono. Poles are extra (¥2,550 for 3 days).</td></tr>
+    </table>
+  </div>
+  <p class="sub">Jacket/pants rental: DIAMOND ¥15,500 for 3 days · Niseko Sports ¥8,000 for 3 days · Rhythm ¥7,800 for 3 days (each item).</p>
+  <div class="note"><b>Book online at least 4 days ahead</b> (after that, Hanazono shops only take bookings in person):
+    <a href="https://book.hanazononiseko.com/public/booking/order02.jsf?mv=1&vs=winter&slcid=8a80818a886ea2170188701525fa6e6e">DIAMOND X</a> ·
+    <a href="https://book.hanazononiseko.com/public/booking/order02.jsf?mv=1&vs=winter&slcid=2c9990187184e3a901719b62403949ec">Niseko Sports Hanazono 308</a> ·
+    <a href="https://www.rhythmjapan.com/winter-rentals-services">Rhythm Japan</a>
+  </div>
+  <p><b>Suggestion:</b> Rent at <b>Niseko Sports Hanazono 308</b> for the best value at the base. Use DIAMOND X if you'd rather pay more to keep gear inside the hotel.</p>
+</section>
+
+<!-- MAP -->
+<section id="map">
+  <h2>Trail map</h2>
+  <p class="sub">Niseko United 2026–27: Hanazono (far right/east), Grand Hirafu, Niseko Village, Annupuri.</p>
+  <div class="card">
+    <p style="margin-top:0">
+      📍 <a href="https://hanazononiseko.com/en/winter/resort/maps"><b>Official trail map (interactive / JPG)</b></a><br>
+      📄 <a href="https://drive.google.com/file/d/16vxeaTyhrCQnsX-4mKrwZbzL3A3L1mTI/view?usp=sharing"><b>Download PDF</b></a>. Save it to your phone before the trip.
+    </p>
+    <ul>
+      <li><b>Hanazono:</b> the hotel's home slopes. Wide groomers, tree runs and the Hanazono 308 base.</li>
+      <li><b>To Hirafu:</b> take the lifts up and cross over the top. Hanazono and Hirafu connect on the mountain.</li>
+      <li><b>Village / Annupuri:</b> All Mountain pass only. Cross via the summit area when gates are open, or take the Niseko United shuttle bus.</li>
+      <li>Check lift and gate status every morning. Wind often closes the upper lifts in January.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section id="food">
+  <h2>Food</h2>
+  <div class="grid">
+    <div class="card"><span class="tag t-ok">Covered</span><h3 style="margin-top:8px">🍳 Breakfast</h3><p style="margin:0">At the hotel every morning (The Lounge).</p></div>
+    <div class="card"><span class="tag t-ok">On the slopes</span><h3 style="margin-top:8px">🍜 Lunch</h3><p style="margin:0">On the mountain each ski day: Hanazono 308 at the base, or mountain restaurants in Hirafu when you cross over. Café Hana 2 at the hotel is a quick option.</p></div>
+    <div class="card"><span class="tag t-warn">In progress</span><h3 style="margin-top:8px">🍽️ Dinner</h3><p style="margin:0">Live availability is being checked. Status is in the table below.</p></div>
+  </div>
+
+  <div class="card scroll">
+    <h3 style="margin-top:0">Dinner plan</h3>
+    <table>
+      <tr><th>Night</th><th>Group</th><th>Plan</th><th>Status</th></tr>
+      <tr><td>Tue Jan 12</td><td>8</td><td>Arrival night. Somewhere easy inside the hotel, e.g. Olivio (Italian, good for groups) or China Kitchen</td><td><span class="tag t-warn">Checking</span></td></tr>
+      <tr><td>Wed Jan 13</td><td>8</td><td>Big group dinner, e.g. Robata or Teppan (hotel; Teppan closed Mon/Tue), or Hirafu (Kumo izakaya at Sky Niseko seats large groups)</td><td><span class="tag t-warn">Checking</span></td></tr>
+      <tr><td>Thu Jan 14</td><td>5</td><td>Hirafu night out: izakaya, steak (e.g. Haku Steak) or sushi</td><td><span class="tag t-warn">Checking</span></td></tr>
+      <tr><td>Fri Jan 15</td><td>5</td><td>Special dinner: Molière Montagne (French, by the Michelin-starred chef Hiroshi Nakamichi) or Sushi Mitsukawa</td><td><span class="tag t-warn">Checking</span></td></tr>
+      <tr><td>Sat Jan 16 🎆</td><td>5</td><td>Stay at Hanazono for the fireworks. Hotel dinner timed around the show</td><td><span class="tag t-warn">Checking</span></td></tr>
+    </table>
+    <p class="sub" style="margin:10px 0 0">Hotel restaurant bookings: +81 136 27 1234 or TableCheck (e.g. <a href="https://www.tablecheck.com/en/parkhyatt-niseko-robata/reserve/landing">Robata</a>, <a href="https://www.tablecheck.com/en/parkhyatt-niseko-lounge/reserve/message">The Lounge</a>). Popular Hirafu restaurants fill up weeks ahead in January. The Hirafu shuttles stop running around 8:30 pm, so book a taxi for late dinners.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0">Park Hyatt restaurants</h3>
+    <ul style="margin:0">
+      <li><b>The Lounge</b>: all-day international and Hokkaido food (Tower lobby)</li>
+      <li><b>Molière Montagne</b>: French, by the Michelin-starred chef Hiroshi Nakamichi</li>
+      <li><b>Sushi Mitsukawa</b>: Michelin-starred, Kanazawa-style sushi</li>
+      <li><b>Robata</b>: grilled seafood and local vegetables</li>
+      <li><b>Teppan</b>: French-inspired teppanyaki (closed Mon & Tue)</li>
+      <li><b>Olivio</b>: Italian, good for families and groups</li>
+      <li><b>China Kitchen</b>: Cantonese and Sichuan</li>
+      <li><b>Krug Igloo Privé</b>: winter-only private dining</li>
+    </ul>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section id="budget">
+  <h2>Cost calculator</h2>
+  <p class="sub">Estimate passes + rental for any part of the group (adult peak prices, online).</p>
+  <div class="card">
+    <div class="calc">
+      <div><label for="ppl">People</label><input id="ppl" type="number" min="1" max="20" value="5"></div>
+      <div><label for="days">Ski days</label><select id="days"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option></select></div>
+      <div><label for="pass">Pass</label><select id="pass"><option value="am">All Mountain</option><option value="hh">Hanazono + Hirafu</option><option value="none">No pass</option></select></div>
+      <div><label for="rent">Rental (skis + boots)</label><select id="rent"><option value="ns">Niseko Sports Premium</option><option value="nse">Niseko Sports Economy</option><option value="dx">DIAMOND X (hotel)</option><option value="none">Own gear</option></select></div>
+      <div><label for="helm">Helmet</label><select id="helm"><option value="1">Yes</option><option value="0">No</option></select></div>
+    </div>
+    <hr style="border:0;border-top:1px solid var(--line);margin:16px 0">
+    <div class="grid">
+      <div class="stat"><span>Per person</span><b id="pp">–</b></div>
+      <div class="stat"><span>Group total</span><b class="total" id="tot">–</b></div>
+      <div class="stat"><span>≈ USD (at ¥150 per $1)</span><b id="usd">–</b></div>
+    </div>
+    <p class="sub" style="margin:10px 0 0">For 4–5 days, rental uses the 3-day price plus the shop's extra-day rate (Niseko Sports helmet extra day is an estimate). Online passes add a ¥500 keycard the first time.</p>
+  </div>
+</section>
+
+<!-- TODO -->
+<section id="todo">
+  <h2>To-do</h2>
+  <div class="card">
+    <ul class="check">
+      <li><span class="tag t-warn">Open</span> Confirm with Park Hyatt how to fit 8 people on Jan 12–13 (extra beds or a 3rd room)</li>
+      <li><span class="tag t-warn">Open</span> Dinner reservations for all 5 nights (checking live availability)</li>
+      <li><span class="tag t-warn">Open</span> Buy lift passes online (All Mountain for 5 people; short passes for the 3 leaving early)</li>
+      <li><span class="tag t-warn">Open</span> Book ski rental at least 4 days ahead (by about Jan 8)</li>
+      <li><span class="tag t-warn">Open</span> Book an airport transfer from New Chitose (CTS) to Hanazono for 8 people</li>
+      <li><span class="tag t-warn">Open</span> Check the 2026–27 fireworks schedule for the Jan 16 start time</li>
+      <li><span class="tag t-ok">Done</span> Hotel booked: Suite King + Double, Jan 12–17</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Prices from <a href="https://hanazononiseko.com/en/winter/resort/lift-tickets">hanazononiseko.com</a>, <a href="https://hanazononiseko.com/en/winter/rental-and-retail/rental">Hanazono rentals</a> and <a href="https://www.rhythmjapan.com/winter-rentals-services">Rhythm Japan</a>, checked Nov 24, 2026. Check before you buy.
+</footer>
+
+<script>
+  const PASS = { // adult peak online
+    am:[0,12800,25100,37500,49800,62200],
+    hh:[0,11800,23200,34600,46000,57400], none:[0,0,0,0,0,0] };
+  const RENT = { // [1d,2d,3d,extra/day] skis+boots
+    ns:[10500,18000,24500,7000], nse:[8500,14500,21000,6000],
+    dx:[14500,29000,43500,14000], none:[0,0,0,0] };
+  const HELM = { ns:[2500,3500,5000,1700], nse:[2500,3500,5000,1700], dx:[2600,4600,6600,2000], none:[2500,3500,5000,1700] };
+  const cost = (t,d)=> d<=3 ? t[d-1] : t[2] + (d-3)*t[3];
+  const yen = n => '¥' + n.toLocaleString('en-US');
+  function calc(){
+    const p = Math.max(1, +ppl.value||1), d = +days.value;
+    let per = PASS[pass.value][d] + (pass.value!=='none'?500:0) + cost(RENT[rent.value], d);
+    if (helm.value==='1') per += cost(HELM[rent.value], d);
+    pp.textContent = yen(per);
+    tot.textContent = yen(per*p);
+    usd.textContent = '$' + Math.round(per*p/150).toLocaleString('en-US');
+  }
+  ['ppl','days','pass','rent','helm'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
+  calc();
+</script>
+</body>
+</html>
