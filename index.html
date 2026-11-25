@@ -88,6 +88,24 @@
   ul.check li{padding:7px 0;border-bottom:1px solid var(--line)}
   ul.check li:last-child{border-bottom:0}
   footer{color:var(--muted);font-size:13px;text-align:center;padding:30px 20px}
+  .mapbox{position:relative;overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff;max-height:78vh;cursor:zoom-in;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y pinch-zoom}
+  .mapbox img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+  .mapbox.zoomed{cursor:grab}
+  .mapbox.zoomed.dragging{cursor:grabbing}
+  .mapbox.zoomed img{width:var(--mapw,300%);max-width:none}
+  .maptools{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  .btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 14px;font:600 14px/1 inherit;text-decoration:none;cursor:pointer;min-height:38px}
+  .btn:hover{border-color:var(--accent);color:var(--accent)}
+  .maphint{position:absolute;left:10px;bottom:10px;background:rgba(13,42,74,.85);color:#fff;font-size:12px;padding:5px 10px;border-radius:999px;pointer-events:none}
+  .mapbox.zoomed .maphint{display:none}
+  .sos{border:2px solid #c0392b}
+  .sos h3{color:#c0392b}
+  @media (prefers-color-scheme: dark){ .sos{border-color:#ff7b6b} .sos h3{color:#ff7b6b} }
+  .calls{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:0}
+  .call{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--ink);background:var(--bg)}
+  .call b{font-size:26px;color:#c0392b;font-variant-numeric:tabular-nums}
+  .call small{color:var(--muted)}
+  .call:hover{border-color:#c0392b}
   .grid > .card{margin:0}
   .grid{margin:12px 0}
   .mobile-only{display:none}
@@ -154,6 +172,7 @@
     <a href="#map"><span lang="en">Trail Map</span><span lang="zh">雪道图</span></a>
     <a href="#food"><span lang="en">Food</span><span lang="zh">餐饮</span></a>
     <a href="#budget"><span lang="en">Cost Calculator</span><span lang="zh">费用计算</span></a>
+    <a href="#sos"><span lang="en">🆘 Emergency</span><span lang="zh">🆘 紧急</span></a>
     <a href="#todo"><span lang="en">To-Do</span><span lang="zh">待办</span></a>
   </div>
 </div></nav>
@@ -324,10 +343,18 @@
   <h2><span lang="en">Trail map</span><span lang="zh">雪道图</span></h2>
   <p class="sub"><span lang="en">Niseko United 2026–27: Hanazono (far right/east), Grand Hirafu, Niseko Village, Annupuri.</span><span lang="zh">二世谷联合 2026–27：花园（最右/东侧）、比罗夫、二世谷村、安努普利。</span></p>
   <div class="card">
-    <p style="margin-top:0">
-      📍 <a href="https://hanazononiseko.com/en/winter/resort/maps"><b><span lang="en">Official trail map (interactive / JPG)</span><span lang="zh">官方雪道图（交互版 / JPG）</span></b></a><br>
-      📄 <a href="https://drive.google.com/file/d/16vxeaTyhrCQnsX-4mKrwZbzL3A3L1mTI/view?usp=sharing"><b><span lang="en">Download PDF</span><span lang="zh">下载PDF</span></b></a><span lang="en">. Save it to your phone before the trip.</span><span lang="zh">。出发前请存到手机里。</span>
-    </p>
+    <div class="maptools">
+      <button type="button" class="btn" id="mapzin">🔍 <span lang="en">Zoom in</span><span lang="zh">放大</span></button>
+      <button type="button" class="btn" id="mapzout">↩︎ <span lang="en">Fit</span><span lang="zh">全图</span></button>
+      <a class="btn" href="https://cdn.hanazononiseko.com/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb0UrIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--367f3fcbb2a865596ff827dc0347e4b01d056909/2026-27_NU_Trail-Map_%E5%85%A8%E5%B1%B1EN.jpg" target="_blank" rel="noopener">🖼️ <span lang="en">Open full resolution</span><span lang="zh">打开高清原图</span></a>
+      <a class="btn" href="https://drive.google.com/file/d/16vxeaTyhrCQnsX-4mKrwZbzL3A3L1mTI/view?usp=sharing" target="_blank" rel="noopener">📄 PDF</a>
+    </div>
+    <div class="mapbox" id="mapbox">
+      <img id="mapimg" src="https://cdn.hanazononiseko.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb0UrIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--367f3fcbb2a865596ff827dc0347e4b01d056909/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdERG9MWm05eWJXRjBPZ2xxY0dWbk9oUnpZVzF3YkdsdVoxOW1ZV04wYjNKSklnbzBPakk2TUFZNkJrVlVPZ3B6ZEhKcGNGUTZEbWx1ZEdWeWJHRmpaVWtpQ1VwUVJVY0dPd2hVT2c5amIyeHZjbk53WVdObFNTSUpjMUpIUWdZN0NGUTZESEYxWVd4cGRIbHBWVG9VY21WemFYcGxYM1J2WDJ4cGJXbDBXd2RwQWtBR2FRSkFCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--00af911dca67b1e1e9227acf33d706adb97ce918/2026-27_NU_Trail-Map_%E5%85%A8%E5%B1%B1EN.jpg" data-full="https://cdn.hanazononiseko.com/rails/active_storage/blobs/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb0UrIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--367f3fcbb2a865596ff827dc0347e4b01d056909/2026-27_NU_Trail-Map_%E5%85%A8%E5%B1%B1EN.jpg" width="4762" height="3437" loading="lazy" decoding="async"
+           alt="Niseko United 2026–27 official trail map: Hanazono, Grand Hirafu, Niseko Village, Annupuri">
+      <span class="maphint"><span lang="en">Tap to zoom · drag to move</span><span lang="zh">点击放大 · 拖动查看</span></span>
+    </div>
+    <p class="sub" style="margin:8px 0 14px"><span lang="en">Official Niseko United 2026–27 trail map (4762 × 3437), shown from <a href="https://hanazononiseko.com/en/winter/resort/maps">hanazononiseko.com</a>. Save the full-resolution image or PDF to your phone before the trip, since signal on the mountain can be patchy.</span><span lang="zh">二世谷联合 2026–27 官方雪道图（4762 × 3437），图片来自 <a href="https://hanazononiseko.com/en/winter/resort/maps">hanazononiseko.com</a>。山上信号可能不稳，出发前请把高清原图或PDF存到手机里。</span></p>
     <ul lang="en">
       <li><b>Hanazono:</b> the hotel's home slopes. Wide groomers, tree runs and the Hanazono 308 base.</li>
       <li><b>To Hirafu:</b> take the lifts up and cross over the top. Hanazono and Hirafu connect on the mountain.</li>
@@ -553,6 +580,57 @@
   </div>
 </section>
 
+<!-- EMERGENCY -->
+<section id="sos">
+  <h2>🆘 <span lang="en">In case of emergency</span><span lang="zh">紧急情况</span></h2>
+  <p class="sub"><span lang="en">Tap a number to call. Save this section on your phone before the trip.</span><span lang="zh">点击号码即可拨打。出发前请把这部分存到手机里。</span></p>
+
+  <div class="card sos">
+    <div class="calls">
+      <a class="call" href="tel:119"><b>119</b><span lang="en">Ambulance / fire / rescue</span><span lang="zh">救护车 / 消防 / 救援</span><small><span lang="en">Free from any phone. Say "kyūkyū" (救急) for ambulance.</span><span lang="zh">任何电话免费拨打。叫救护车说"救急"（kyūkyū）。</span></small></a>
+      <a class="call" href="tel:110"><b>110</b><span lang="en">Police</span><span lang="zh">警察</span><small><span lang="en">Free from any phone</span><span lang="zh">任何电话免费拨打</span></small></a>
+      <a class="call" href="tel:+815038162787"><b style="font-size:20px">050-3816-2787</b><span lang="en">Japan Visitor Hotline (JNTO)</span><span lang="zh">日本游客热线（JNTO）</span><small><span lang="en">24/7 · English, Chinese, Korean · accidents, illness, help with Japanese</span><span lang="zh">24小时 · 英语、中文、韩语 · 事故、生病、语言协助</span></small></a>
+      <a class="call" href="tel:+81136271234"><b style="font-size:20px">0136-27-1234</b><span lang="en">Park Hyatt front desk</span><span lang="zh">柏悦酒店前台</span><small><span lang="en">They can call a taxi or doctor and translate</span><span lang="zh">可帮忙叫车、联系医生和翻译</span></small></a>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3 style="margin-top:0">🏥 <span lang="en">Medical</span><span lang="zh">就医</span></h3>
+      <ul style="margin:0" lang="en">
+        <li><b>Niseko International Clinic</b>, Hirafu: English-speaking, deals with ski injuries all season. <a href="tel:+81136215454">0136-21-5454</a>. Hours vary, about 9:00–17:00 with a lunch break, so call first.</li>
+        <li><b>Kutchan Kosei General Hospital</b>, Kutchan: the main hospital with ER and X-ray, for serious injuries. <a href="tel:+81136221141">0136-22-1141</a>. English isn't guaranteed, so bring the hotel or the hotline to help translate.</li>
+        <li>Bring your passport and travel-insurance details. Most clinics want payment up front, so keep receipts to claim later.</li>
+      </ul>
+      <ul style="margin:0" lang="zh">
+        <li><b>Niseko International Clinic</b>（比罗夫）：可说英语，雪季专门处理滑雪伤。<a href="tel:+81136215454">0136-21-5454</a>。营业时间不固定，约9:00–17:00，中午休息，请先打电话。</li>
+        <li><b>倶知安厚生医院</b>（Kutchan Kosei，倶知安）：有急诊和X光的主要医院，重伤去这里。<a href="tel:+81136221141">0136-22-1141</a>。不一定有英语人员，可请酒店或热线帮忙翻译。</li>
+        <li>带好护照和旅游保险资料。诊所一般要先付费，请保留收据以便理赔。</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">⛷️ <span lang="en">On the mountain</span><span lang="zh">在雪场</span></h3>
+      <ul style="margin:0" lang="en">
+        <li><b>Someone hurt on the slope:</b> stay with them, cross a pair of skis upright above them so others see you, and tell the nearest lift attendant or ski patrol. Off the slope or no staff around: call 119.</li>
+        <li><b>Never ski alone in the trees.</b> Tree wells (deep holes of loose snow around trees) are a real danger in Niseko powder. Keep your buddy in sight.</li>
+        <li><b>Niseko Rules:</b> leave the resort boundary only through the open gates. Never duck under ropes. Rescue outside the boundary is <b>charged</b>. Check the <a href="https://niseko.nadare.info/" target="_blank" rel="noopener">daily Niseko avalanche report</a>.</li>
+        <li><b>If the group gets split up:</b> meet at <b>Hanazono 308</b> at the base, or in the Park Hyatt lobby.</li>
+        <li>Keep phones charged (the cold drains batteries fast). Share live location in the group chat on ski days.</li>
+      </ul>
+      <ul style="margin:0" lang="zh">
+        <li><b>有人在雪道上受伤：</b>留在伤者身边，把一副雪板交叉竖插在伤者上方提醒他人，并通知最近的缆车工作人员或雪场巡逻。不在雪道上或附近没有工作人员：拨打119。</li>
+        <li><b>不要独自滑树林。</b>二世谷粉雪里的"树井"（树周围的深层松雪坑）很危险。始终保持同伴在视线内。</li>
+        <li><b>二世谷规则：</b>只能从开放的闸门离开雪场边界，绝不能钻绳。边界外的救援<b>要收费</b>。请查看<a href="https://niseko.nadare.info/" target="_blank" rel="noopener">每日二世谷雪崩信息</a>。</li>
+        <li><b>如果走散：</b>在山脚的<b>花园308</b>或柏悦酒店大堂集合。</li>
+        <li>手机保持电量充足（低温耗电很快）。滑雪日在群里共享实时位置。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note" lang="en"><b>Travel insurance:</b> make sure everyone's policy covers skiing and medical evacuation. Japanese hospitals bill foreigners in full, and a helicopter or off-piste rescue can be very expensive.</div>
+  <div class="note" lang="zh"><b>旅游保险：</b>请确认每个人的保险包含滑雪和医疗转运。日本医院对外国人全额收费，直升机或雪场外救援费用可能很高。</div>
+</section>
+
 <!-- TODO -->
 <section id="todo">
   <h2><span lang="en">To-do</span><span lang="zh">待办事项</span></h2>
@@ -569,6 +647,7 @@
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Request early check-in / bag drop on Jan 12</span><span lang="zh">申请1月12日提前入住 / 寄存行李</span></li>
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Request late checkout until 16:00 on Jan 17</span><span lang="zh">申请1月17日延迟退房至16:00</span></li>
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Ask for extra Le Labo small bottles to take home 🧴</span><span lang="zh">向酒店多要几瓶 Le Labo 小瓶装带回家 🧴</span></li>
+      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Everyone: check travel insurance covers skiing and medical evacuation</span><span lang="zh">每个人：确认旅游保险包含滑雪和医疗转运</span></li>
       <li><span class="tag t-ok"><span lang="en">Done</span><span lang="zh">已完成</span></span> <span lang="en">Hotel booked: Suite King + Double, Jan 12–17</span><span lang="zh">酒店已订：大床套房 + 双人房，1月12–17日</span></li>
       <li><span class="tag t-ok"><span lang="en">Done</span><span lang="zh">已完成</span></span> <span lang="en">Confirmed with the hotel: 8 people on Jan 12–13</span><span lang="zh">已与酒店确认：1月12–13日8人</span></li>
     </ul>
@@ -593,6 +672,32 @@
   }
   document.querySelectorAll('.langtog button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.set)));
   setLang(document.documentElement.dataset.lang);
+
+  // trail map: tap to zoom at that point, drag to pan
+  (function(){
+    const box=document.getElementById('mapbox'), img=document.getElementById('mapimg');
+    if(!box) return;
+    const Z=()=>innerWidth<600?'450%':'250%';
+    let hi=false;
+    function sharpen(){ if(hi) return; hi=true; const f=new Image(); f.onload=()=>{ img.src=f.src; }; f.src=img.dataset.full; }
+    function zoomAt(fx,fy){
+      sharpen();
+      box.style.setProperty('--mapw',Z()); box.classList.add('zoomed');
+      requestAnimationFrame(()=>{ box.scrollLeft=fx*img.offsetWidth-box.clientWidth/2; box.scrollTop=fy*img.offsetHeight-box.clientHeight/2; });
+    }
+    function fit(){ box.classList.remove('zoomed'); box.scrollTo(0,0); }
+    let down=null, moved=false;
+    box.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse') return; down={x:e.clientX,y:e.clientY,l:box.scrollLeft,t:box.scrollTop}; moved=false; });
+    addEventListener('pointermove',e=>{ if(!down) return; const dx=e.clientX-down.x, dy=e.clientY-down.y; if(Math.abs(dx)+Math.abs(dy)>4){moved=true; box.classList.add('dragging');} if(box.classList.contains('zoomed')){ box.scrollLeft=down.l-dx; box.scrollTop=down.t-dy; } });
+    addEventListener('pointerup',()=>{ down=null; box.classList.remove('dragging'); });
+    box.addEventListener('click',e=>{
+      if(moved){ moved=false; return; }
+      if(box.classList.contains('zoomed')) return;
+      const r=img.getBoundingClientRect(); zoomAt((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height);
+    });
+    document.getElementById('mapzin').addEventListener('click',()=>zoomAt(.62,.45));
+    document.getElementById('mapzout').addEventListener('click',fit);
+  })();
 
   const PASS = { // adult peak online
     am:[0,12800,25100,37500,49800,62200],
