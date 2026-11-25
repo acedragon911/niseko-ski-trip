@@ -106,6 +106,22 @@
   .call b{font-size:26px;color:#c0392b;font-variant-numeric:tabular-nums}
   .call small{color:var(--muted)}
   .call:hover{border-color:#c0392b}
+  .hours{width:100%;border-collapse:collapse}
+  .hours td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+  .hours tr:last-child td{border-bottom:0}
+  .hours td.t{white-space:nowrap;font-weight:700;font-variant-numeric:tabular-nums;text-align:right;color:var(--accent)}
+  .hours td small{display:block;color:var(--muted);font-size:13px}
+  .ad{position:relative;overflow:hidden;margin:16px 0;border-radius:16px;padding:24px 22px;color:#f5efe4;
+      background:radial-gradient(120% 140% at 100% 0%,#3b3326 0%,transparent 55%),linear-gradient(150deg,#141414,#22201c 55%,#2d2a24)}
+  .ad::after{content:"";position:absolute;right:-30px;bottom:-40px;width:220px;height:140px;opacity:.12;
+      background:linear-gradient(135deg,transparent 45%,#fff 45% 50%,transparent 50%),linear-gradient(45deg,transparent 45%,#fff 45% 50%,transparent 50%);pointer-events:none}
+  .ad .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#c9a86a;font-weight:700}
+  .ad h3{font-family:Georgia,"Times New Roman","Songti SC",serif;font-weight:400;font-size:28px;margin:6px 0 6px;color:#fff;letter-spacing:.01em}
+  .ad p{margin:0 0 14px;color:#d9d1c3;max-width:560px}
+  .badges{display:flex;flex-wrap:wrap;gap:8px}
+  .badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(201,168,106,.55);color:#f0e2c4;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;background:rgba(201,168,106,.08)}
+  .ad a{color:#e8c98a}
+  @media (max-width:600px){ .ad h3{font-size:23px} .ad{padding:20px 16px} }
   .grid > .card{margin:0}
   .grid{margin:12px 0}
   .mobile-only{display:none}
@@ -128,6 +144,8 @@
     th,td{padding:8px 6px}
     td:first-child{white-space:nowrap}
     th.num{white-space:normal}
+    .hours td:first-child{white-space:normal}
+    .hours td.t{padding-left:8px}
     .stat b{font-size:19px}
     .ctr{display:none}
     .mobile-only{display:block}
@@ -166,10 +184,12 @@
 <nav><div class="wrap">
   <div class="links">
     <a href="#overview"><span lang="en">Overview</span><span lang="zh">概览</span></a>
+    <a href="#hours"><span lang="en">Hours</span><span lang="zh">时间</span></a>
     <a href="#itinerary"><span lang="en">Itinerary</span><span lang="zh">行程</span></a>
     <a href="#passes"><span lang="en">Lift Passes</span><span lang="zh">缆车票</span></a>
     <a href="#rental"><span lang="en">Ski Rental</span><span lang="zh">雪具租赁</span></a>
     <a href="#map"><span lang="en">Trail Map</span><span lang="zh">雪道图</span></a>
+    <a href="#powder"><span lang="en">❄️ Powder</span><span lang="zh">❄️ 粉雪</span></a>
     <a href="#food"><span lang="en">Food</span><span lang="zh">餐饮</span></a>
     <a href="#budget"><span lang="en">Cost Calculator</span><span lang="zh">费用计算</span></a>
     <a href="#sos"><span lang="en">🆘 Emergency</span><span lang="zh">🆘 紧急</span></a>
@@ -193,6 +213,20 @@
       <span lang="en">Suite King Room + Double Room<br>🏠 3D tours: <a href="https://visitingmedia.com/app/properties/4684/all-assets-share?asset=296437">King Bed Suite</a> · <a href="https://visitingmedia.com/app/properties/4684/all-assets-share?asset=296436">Twin / Double Room</a></span><span lang="zh">大床套房 + 双人房<br>🏠 3D看房：<a href="https://visitingmedia.com/app/properties/4684/all-assets-share?asset=296437">大床套房</a> · <a href="https://visitingmedia.com/app/properties/4684/all-assets-share?asset=296436">双床/双人房</a></span></div>
     <div class="card stat"><b><span lang="en">Peak season</span><span lang="zh">旺季</span></b>
       <span lang="en">All dates fall in peak lift pricing (Dec 24 – Feb 28)</span><span lang="zh">全部日期适用旺季缆车票价（12月24日 – 2月28日）</span></div>
+  </div>
+
+
+  <div class="ad" role="complementary" aria-label="Park Hyatt Niseko Hanazono">
+    <div class="eyebrow"><span lang="en">Our home base</span><span lang="zh">我们的大本营</span></div>
+    <h3>Park Hyatt Niseko Hanazono</h3>
+    <p><span lang="en">Ski-in / ski-out at the foot of Hanazono, with Mt. Yotei out the window, natural onsen, and in-house restaurants led by Michelin-pedigree chefs.</span><span lang="zh">位于花园山脚，滑进滑出，窗外即是羊蹄山，拥有天然温泉，馆内餐厅由米其林背景主厨主理。</span></p>
+    <div class="badges">
+      <span class="badge">🔑 <span lang="en">One MICHELIN Key</span><span lang="zh">米其林一钥匙</span></span>
+      <span class="badge">⭐ <span lang="en">Forbes Travel Guide Recommended 2026</span><span lang="zh">福布斯旅游指南 2026 推荐</span></span>
+      <span class="badge">🏆 <span lang="en">Travel + Leisure Luxury Awards Asia Pacific</span><span lang="zh">Travel + Leisure 亚太奢华大奖</span></span>
+      <span class="badge">🍣 <span lang="en">Molière Montagne · Sushi Mitsukawa</span><span lang="zh">Molière Montagne · Sushi Mitsukawa</span></span>
+    </div>
+    <p style="margin:12px 0 0;font-size:12px;opacity:.75"><span lang="en">Sources: <a href="https://guide.michelin.com/us/en/hotels-stays/kutchancho/park-hyatt-niseko-hanazono-11905" target="_blank" rel="noopener">MICHELIN Guide</a> · <a href="https://www.forbestravelguide.com/award-winners" target="_blank" rel="noopener">Forbes Travel Guide</a> · <a href="https://www.hyatt.com/en-US/hotel/japan/park-hyatt-niseko-hanazono/ctsph/news-events" target="_blank" rel="noopener">Hyatt news</a></span><span lang="zh">来源：<a href="https://guide.michelin.com/us/en/hotels-stays/kutchancho/park-hyatt-niseko-hanazono-11905" target="_blank" rel="noopener">米其林指南</a> · <a href="https://www.forbestravelguide.com/award-winners" target="_blank" rel="noopener">福布斯旅游指南</a> · <a href="https://www.hyatt.com/en-US/hotel/japan/park-hyatt-niseko-hanazono/ctsph/news-events" target="_blank" rel="noopener">凯悦新闻</a></span></p>
   </div>
 
   <div class="card">
@@ -221,6 +255,22 @@
       <li>1月17日：延迟退房至16:00。</li>
       <li>多要几瓶 Le Labo 旅行装带回家 🧴😄</li>
     </ul>
+  </div>
+
+  <div class="card" id="hours">
+    <h3 style="margin-top:0">⏰ <span lang="en">Daily hours</span><span lang="zh">每日营业时间</span></h3>
+    <table class="hours">
+      <tr><td>🍳 <b><span lang="en">Breakfast</span><span lang="zh">早餐</span></b><small><span lang="en">Buffet at The Lounge or Deli (the hotel picks the venue each day). Book a seating on TableCheck.</span><span lang="zh">自助早餐在 The Lounge 或 Deli（酒店每天安排场地）。可在 TableCheck 预约时段。</span></small></td><td class="t">7:00–10:30</td></tr>
+      <tr><td>☕ <b>Café Hana 2</b><small><span lang="en">Quick breakfast or coffee in the hotel</span><span lang="zh">酒店内快速早餐或咖啡</span></small></td><td class="t">7:00–16:30</td></tr>
+      <tr><td>🎟️ <b><span lang="en">Hanazono 308 ticket counter</span><span lang="zh">花园308售票处</span></b><small><span lang="en">Stops issuing 30 min before lifts close</span><span lang="zh">缆车关闭前30分钟停止售票</span></small></td><td class="t">8:00–20:00</td></tr>
+      <tr><td>🚡 <b><span lang="en">Hanazono lifts: day</span><span lang="zh">花园缆车：日场</span></b><small><span lang="en">Closing can be earlier near sunset; wind can close upper lifts</span><span lang="zh">日落时间可能提前关闭；大风时上部缆车可能停运</span></small></td><td class="t">8:30–16:30</td></tr>
+      <tr><td>🌙 <b><span lang="en">Hanazono night skiing</span><span lang="zh">花园夜滑</span></b><small><span lang="en">Runs Dec 12 – Mar 22, so every night of our stay. Needs a night or all-day pass.</span><span lang="zh">12月12日 – 3月22日，住宿期间每晚都有。需夜滑票或全天票。</span></small></td><td class="t">16:00–20:00</td></tr>
+      <tr><td>🍽️ <b>HANAZONO EDGE</b><small><span lang="en">On-slope restaurant at Hanazono</span><span lang="zh">花园雪道旁餐厅</span></small></td><td class="t">8:00–20:30</td></tr>
+      <tr><td>⛷️ <b><span lang="en">Grand Hirafu</span><span lang="zh">比罗夫</span></b><small><span lang="en">Night skiing Dec 12 – Mar 22 too. Hours change daily; check the <a href="https://en.grand-hirafu.jp/snow/status/" target="_blank" rel="noopener">lift status page</a>. Hirafu slope fireworks at 20:00 most nights (Dec 25 – Mar 19).</span><span lang="zh">夜滑同样是12月12日 – 3月22日。每天时间不同，请查看<a href="https://en.grand-hirafu.jp/snow/status/" target="_blank" rel="noopener">缆车运营状态</a>。比罗夫雪道烟花大多数晚上20:00（12月25日 – 3月19日）。</span></small></td><td class="t"><span lang="en">varies</span><span lang="zh">不定</span></td></tr>
+      <tr><td>♨️ <b><span lang="en">Hotel onsen</span><span lang="zh">酒店温泉</span></b><small><span lang="en"><b>Advance booking required.</b> Book through the spa: 0136-27-1234 · phniseko.the.spa@hyatt.com</span><span lang="zh"><b>需提前预约。</b>通过水疗中心预约：0136-27-1234 · phniseko.the.spa@hyatt.com</span></small></td><td class="t">6:00–22:00</td></tr>
+      <tr><td>🏋️ <b><span lang="en">Gym</span><span lang="zh">健身房</span></b><small><span lang="en">Hotel guests</span><span lang="zh">住客专用</span></small></td><td class="t">24h</td></tr>
+    </table>
+    <p class="sub" style="margin:8px 0 0"><span lang="en">Breakfast hours are from the hotel's last published season and onsen hours from its spa page; confirm both at check-in. Lift hours are the official 2026–27 times and can change with weather.</span><span lang="zh">早餐时间为酒店上季公布的时间，温泉时间来自酒店水疗页面，入住时请再确认。缆车时间为2026–27季官方时间，可能因天气变动。</span></p>
   </div>
 </section>
 
@@ -370,12 +420,67 @@
   </div>
 </section>
 
+<!-- POWDER -->
+<section id="powder">
+  <h2>❄️ <span lang="en">Powder &amp; the gates</span><span lang="zh">粉雪与闸门</span></h2>
+  <p class="sub"><span lang="en">Side idea for beginner / intermediate skiers who want to try real Niseko powder. Optional; not on a fixed day.</span><span lang="zh">给想体验二世谷真正粉雪的初/中级滑雪者的额外建议。可选，不固定在哪一天。</span></p>
+
+  <div class="note" lang="en"><b>Read first:</b> the gates lead <b>outside</b> the resort. That terrain is not groomed, patrolled or avalanche-controlled. For beginners and intermediates, the safe way through a gate is <b>with a guide</b>. Without one, stay inside the boundary.</div>
+  <div class="note" lang="zh"><b>请先读：</b>闸门通往雪场<b>边界之外</b>，那里没有压雪、没有巡逻，也没有雪崩控制。初/中级滑雪者要过闸门，安全的做法是<b>跟向导一起</b>。没有向导就留在边界内。</div>
+
+  <div class="card">
+    <h3 style="margin-top:0"><span lang="en">Step by step: from easy to wild</span><span lang="zh">循序渐进：从简单到野雪</span></h3>
+    <table class="hours">
+      <tr><td><b>1 · <span lang="en">Inside the boundary</span><span lang="zh">边界内</span></b><small><span lang="en">Ski fresh snow beside the groomed runs and in Hanazono's marked tree areas (see the <a href="#map">trail map</a>). Patrolled and safe. Best right after it snows: be on the first lifts at 8:30.</span><span lang="zh">在压雪道旁和花园标记的树林区滑新雪（见<a href="#map">雪道图</a>）。有巡逻，安全。下雪后最好：8:30赶头班缆车。</span></small></td><td class="t"><span class="tag t-ok"><span lang="en">Everyone</span><span lang="zh">所有人</span></span></td></tr>
+      <tr><td><b>2 · Strawberry Fields</b><small><span lang="en">Hanazono's most approachable gated area. Reached from <b>Hanazono Quad Lift #2</b>, no hiking. Mostly tree runs, about 300 m of soft powder, steep in places. It gets tracked out fast, so go early.</span><span lang="zh">花园最容易上手的闸门区域。从<b>花园2号四人吊椅</b>直接进入，不用徒步。以树林为主，约300米松软粉雪，部分路段较陡。很快会被滑完，要早去。</span></small></td><td class="t"><span class="tag t-warn"><span lang="en">Intermediate + guide</span><span lang="zh">中级 + 向导</span></span></td></tr>
+      <tr><td><b>3 · <span lang="en">Gates 4 &amp; 5 (Hanazono)</span><span lang="zh">4号和5号闸门（花园）</span></b><small><span lang="en">From the top of the Hanazono #3 lift. Fairly straightforward fall-line powder that ends on a cat track, then a walk back into the resort. Open only when avalanche conditions allow.</span><span lang="zh">从花园3号缆车顶部出发。较直接的顺山粉雪，结束在压雪车道上，再步行回到雪场。只在雪崩条件允许时开放。</span></small></td><td class="t"><span class="tag t-fire"><span lang="en">Guide only</span><span lang="zh">必须向导</span></span></td></tr>
+    </table>
+  </div>
+
+  <div class="grid">
+    <div class="card"><span class="tag t-info"><span lang="en">Recommended</span><span lang="zh">推荐</span></span>
+      <h3 style="margin-top:8px">🧭 Hanazono Powder Guides</h3>
+      <ul style="margin:0" lang="en">
+        <li>Hanazono's own guiding service. <b>Private tours</b> for <b>first-time</b> backcountry skiers up to experts; the guide sets the pace for your level.</li>
+        <li>Avalanche gear (beacon, probe, shovel) and transport within Niseko included. Lift pass <b>not</b> included.</li>
+        <li>Optional 7:30 start for first tracks before the resort opens.</li>
+        <li>2026–27 bookings were "coming soon" as of Nov 24. <a href="https://hanazononiseko.com/en/winter/activities/backcountry-guiding" target="_blank" rel="noopener">Tour page</a> · bookings@harmonyresorts.com</li>
+        <li>Best fit: <b>Fri Jan 15</b> (the explore day), or whichever morning follows a big snowfall.</li>
+      </ul>
+      <ul style="margin:0" lang="zh">
+        <li>花园官方向导服务。<b>私人团</b>，从<b>第一次</b>滑野雪到高手都可以，向导按你的水平安排节奏。</li>
+        <li>包含雪崩装备（信标、探杆、雪铲）和二世谷区域内接送。<b>不含</b>缆车票。</li>
+        <li>可选7:30出发，在雪场开放前滑第一道。</li>
+        <li>截至11月24日，2026–27季预订"即将开放"。<a href="https://hanazononiseko.com/en/winter/activities/backcountry-guiding" target="_blank" rel="noopener">向导页面</a> · bookings@harmonyresorts.com</li>
+        <li>最合适：<b>1月15日（周五）</b>探索日，或大雪后的早上。</li>
+      </ul></div>
+    <div class="card">
+      <h3 style="margin-top:0">✅ <span lang="en">Gate rules (Niseko Rules)</span><span lang="zh">闸门规则（二世谷规则）</span></h3>
+      <ul style="margin:0" lang="en">
+        <li>Leave the resort <b>only through an open gate</b>. Never duck a rope. Closed gate = no entry.</li>
+        <li>Wear a helmet and carry a <b>beacon, probe and shovel</b>, and know how to use them.</li>
+        <li>Never alone: go in pairs at least, and keep each other in sight (tree wells).</li>
+        <li>Check the <a href="https://niseko.nadare.info/" target="_blank" rel="noopener">daily Niseko avalanche report</a> and the sign at the gate.</li>
+        <li>Rescue outside the boundary is <b>charged</b>, and your travel insurance must cover off-piste.</li>
+        <li>Ask the rental shop for <b>wider powder skis</b>. They make deep snow much easier.</li>
+      </ul>
+      <ul style="margin:0" lang="zh">
+        <li><b>只能从开放的闸门</b>离开雪场，绝不能钻绳。闸门关闭就不能进入。</li>
+        <li>戴头盔，携带<b>信标、探杆和雪铲</b>，并且会用。</li>
+        <li>不要单独行动：至少两人一起，互相保持在视线内（小心树井）。</li>
+        <li>查看<a href="https://niseko.nadare.info/" target="_blank" rel="noopener">每日二世谷雪崩信息</a>和闸门处的告示。</li>
+        <li>边界外的救援<b>要收费</b>，旅游保险必须包含雪道外滑雪。</li>
+        <li>向租赁店要<b>宽板粉雪板</b>，在深雪里会轻松很多。</li>
+      </ul></div>
+  </div>
+</section>
+
 <!-- FOOD -->
 <section id="food">
   <h2><span lang="en">Food</span><span lang="zh">餐饮</span></h2>
   <div class="grid">
     <div class="card"><span class="tag t-ok"><span lang="en">Covered</span><span lang="zh">已包含</span></span><h3 style="margin-top:8px"><span lang="en">🍳 Breakfast</span><span lang="zh">🍳 早餐</span></h3>
-      <p style="margin:0"><span lang="en">At the hotel every morning (The Lounge).</span><span lang="zh">每天早上在酒店享用（The Lounge）。</span></p></div>
+      <p style="margin:0"><span lang="en">At the hotel every morning, 7:00–10:30 (The Lounge or Deli).</span><span lang="zh">每天早上在酒店享用，7:00–10:30（The Lounge 或 Deli）。</span></p></div>
     <div class="card"><span class="tag t-ok"><span lang="en">On the slopes</span><span lang="zh">雪场用餐</span></span><h3 style="margin-top:8px"><span lang="en">🍜 Lunch</span><span lang="zh">🍜 午餐</span></h3>
       <p style="margin:0"><span lang="en">On the mountain each ski day. ⭐ <b>NEST813 is a must</b> (see below). Also: HANAZONO EDGE (glass-walled, ski-in at Hanazono), Hanazono 308 at the base, or Café Hana 2 in the hotel.</span><span lang="zh">每个滑雪日在山上吃。⭐ <b>NEST813 必去</b>（见下方）。其他选择：花园的 HANAZONO EDGE（全玻璃、可直接滑进）、山脚的花园308，或酒店内的 Café Hana 2。</span></p></div>
     <div class="card"><span class="tag t-warn"><span lang="en">Planned · not booked</span><span lang="zh">已规划 · 未预订</span></span><h3 style="margin-top:8px"><span lang="en">🍽️ Dinner</span><span lang="zh">🍽️ 晚餐</span></h3>
@@ -648,6 +753,8 @@
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Request late checkout until 16:00 on Jan 17</span><span lang="zh">申请1月17日延迟退房至16:00</span></li>
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Ask for extra Le Labo small bottles to take home 🧴</span><span lang="zh">向酒店多要几瓶 Le Labo 小瓶装带回家 🧴</span></li>
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Everyone: check travel insurance covers skiing and medical evacuation</span><span lang="zh">每个人：确认旅游保险包含滑雪和医疗转运</span></li>
+      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Book onsen time slots (advance booking required)</span><span lang="zh">预约温泉时段（需提前预约）</span></li>
+      <li><span class="tag t-info"><span lang="en">Optional</span><span lang="zh">可选</span></span> <span lang="en">Book a Hanazono Powder Guides private tour once 2026–27 bookings open</span><span lang="zh">2026–27季开放后预订花园粉雪向导私人团</span></li>
       <li><span class="tag t-ok"><span lang="en">Done</span><span lang="zh">已完成</span></span> <span lang="en">Hotel booked: Suite King + Double, Jan 12–17</span><span lang="zh">酒店已订：大床套房 + 双人房，1月12–17日</span></li>
       <li><span class="tag t-ok"><span lang="en">Done</span><span lang="zh">已完成</span></span> <span lang="en">Confirmed with the hotel: 8 people on Jan 12–13</span><span lang="zh">已与酒店确认：1月12–13日8人</span></li>
     </ul>
