@@ -37,7 +37,8 @@
   .chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);padding:5px 12px;border-radius:999px;font-size:14px}
   nav{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
   nav .wrap{max-width:980px;margin:0 auto;padding:0 12px}
-  nav .links{display:flex;gap:4px;overflow-x:auto}
+  nav .links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  nav .links::-webkit-scrollbar{display:none}
   nav a{white-space:nowrap;padding:12px 10px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:600}
   nav a:hover{color:var(--accent)}
   header .wrap{position:relative}
@@ -54,7 +55,7 @@
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:12px 0}
   .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
   .stat b{display:block;font-size:22px}
-  .stat span{color:var(--muted);font-size:14px}
+  .stat > span{color:var(--muted);font-size:14px}
   table{width:100%;border-collapse:collapse;font-size:15px}
   th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
   th{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
@@ -71,7 +72,7 @@
   .day{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
   .day:last-child{border-bottom:0}
   .day .d b{display:block;font-size:18px}
-  .day .d span{color:var(--muted);font-size:14px}
+  .day .d > span{color:var(--muted);font-size:14px}
   .day ul{margin:6px 0 0;padding-left:18px}
   .pax{font-weight:700}
   .bar{display:flex;gap:4px;margin:10px 0 4px}
@@ -87,7 +88,42 @@
   ul.check li{padding:7px 0;border-bottom:1px solid var(--line)}
   ul.check li:last-child{border-bottom:0}
   footer{color:var(--muted);font-size:13px;text-align:center;padding:30px 20px}
-  @media (max-width:560px){ .day{grid-template-columns:1fr;gap:4px} }
+  .grid > .card{margin:0}
+  .grid{margin:12px 0}
+  .mobile-only{display:none}
+  @media (max-width:600px){
+    header{padding:64px 16px 28px}
+    header h1{font-size:30px}
+    .chips{gap:6px}
+    .chip{font-size:13px;padding:4px 10px}
+    nav .wrap{padding:0 4px;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+    nav a{padding:12px 8px}
+    main{padding:8px 14px 48px}
+    section{padding-top:22px}
+    h2{font-size:22px}
+    .card{padding:14px 14px;border-radius:12px}
+    .day{grid-template-columns:1fr;gap:4px}
+    .day .d{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+    .bar{gap:3px}
+    .bar div{padding:8px 2px;font-size:11px}
+    th{text-transform:none;letter-spacing:0;font-size:12px}
+    th,td{padding:8px 6px}
+    td:first-child{white-space:nowrap}
+    th.num{white-space:normal}
+    .stat b{font-size:19px}
+    .ctr{display:none}
+    .mobile-only{display:block}
+    /* rental table → stacked cards */
+    table.stack, table.stack tbody, table.stack tr, table.stack td{display:block;width:100%}
+    table.stack tr:first-child{display:none}
+    table.stack tr{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:0 0 10px}
+    table.stack td{border:0;padding:4px 0;white-space:normal;text-align:left;display:flex;justify-content:space-between;gap:12px}
+    table.stack td:first-child{display:block;font-size:16px;padding-bottom:6px;border-bottom:1px solid var(--line);margin-bottom:4px}
+    table.stack td[data-en]::before{content:attr(data-en);color:var(--muted);font-size:13px;font-weight:600;flex-shrink:0}
+    html[data-lang="zh"] table.stack td[data-zh]::before{content:attr(data-zh)}
+    table.stack td.note-cell{display:block;color:var(--muted);font-size:14px}
+    .card.scroll:has(table.stack){background:transparent;border:0;padding:0}
+  }
 </style>
 </head>
 <body>
@@ -100,7 +136,7 @@
     <h1><span lang="en">⛷️ Niseko Ski Trip</span><span lang="zh">⛷️ 二世谷滑雪之旅</span></h1>
     <p><span lang="en">Park Hyatt Niseko Hanazono · Hokkaido, Japan</span><span lang="zh">二世谷花园柏悦酒店 · 日本北海道</span></p>
     <div class="chips">
-      <span class="chip"><span lang="en">📅 Tue Jan 12 → Sun Jan 17, 2027</span><span lang="zh">📅 2027年1月12日（周二）→ 1月17日（周日）</span></span>
+      <span class="chip"><span lang="en">📅 Tue Jan 12 → Sun Jan 17, 2027</span><span lang="zh">📅 2027年1月12日 → 17日</span></span>
       <span class="chip"><span lang="en">🌙 5 nights</span><span lang="zh">🌙 5晚</span></span>
       <span class="chip"><span lang="en">🛏️ Suite King + Double Room</span><span lang="zh">🛏️ 大床套房 + 双人房</span></span>
       <span class="chip"><span lang="en">👥 8 people → 5 people</span><span lang="zh">👥 8人 → 5人</span></span>
@@ -133,7 +169,7 @@
       <span lang="en">Ski-in / ski-out at the Hanazono base · <a href="https://www.hyatt.com/en-US/hotel/japan/park-hyatt-niseko-hanazono/ctsph">hotel site</a> · +81 136 27 1234</span>
       <span lang="zh">位于花园雪场山脚，滑进滑出 · <a href="https://www.hyatt.com/en-US/hotel/japan/park-hyatt-niseko-hanazono/ctsph">酒店官网</a> · +81 136 27 1234</span></div>
     <div class="card stat"><b><span lang="en">Jan 12 – Jan 17, 2027</span><span lang="zh">2027年1月12日 – 17日</span></b>
-      <span lang="en">Check in Tue Jan 12 · Check out Sun Jan 17</span><span lang="zh">1月12日（周二）入住 · 1月17日（周日）退房</span></div>
+      <span lang="en">Check in Tue Jan 12 (10:00 airport bus) · Check out Sun Jan 17 (late checkout to 16:00 requested)</span><span lang="zh">1月12日（周二）入住（10:00机场巴士）· 1月17日（周日）退房（申请延迟至16:00）</span></div>
     <div class="card stat"><b><span lang="en">2 rooms</span><span lang="zh">2间房</span></b>
       <span lang="en">Suite King Room + Double Room<br>🏠 3D tours: <a href="https://visitingmedia.com/app/properties/4684/all-assets-share?asset=296437">King Bed Suite</a> · <a href="https://visitingmedia.com/app/properties/4684/all-assets-share?asset=296436">Twin / Double Room</a></span><span lang="zh">大床套房 + 双人房<br>🏠 3D看房：<a href="https://visitingmedia.com/app/properties/4684/all-assets-share?asset=296437">大床套房</a> · <a href="https://visitingmedia.com/app/properties/4684/all-assets-share?asset=296436">双床/双人房</a></span></div>
     <div class="card stat"><b><span lang="en">Peak season</span><span lang="zh">旺季</span></b>
@@ -150,8 +186,22 @@
       <div class="n5"><span lang="en">Sat 16</span><span lang="zh">16日 周六</span> 🎆<br><b>5</b></div>
       <div class="out"><span lang="en">Sun 17<br>check out</span><span lang="zh">17日 周日<br>退房</span></div>
     </div>
-    <div class="note" lang="en"><b>Check with the hotel:</b> 8 people across a Suite King and a Double Room on Jan 12–13 is more than those rooms usually hold. Ask Park Hyatt about extra beds or rollaways, or book a third room for those 2 nights. Also tell them the group drops to 5 from Jan 14.</div>
-    <div class="note" lang="zh"><b>需向酒店确认：</b>1月12–13日共8人住大床套房和双人房，通常超出这两间房的入住上限。请向柏悦询问加床，或为这两晚再订一间房。同时告知酒店从1月14日起人数减为5人。</div>
+    <div class="note" lang="en" style="border-color:var(--ok);background:var(--ok-soft)"><b>✅ Confirmed with the hotel:</b> 8 people on Jan 12–13, dropping to 5 from Jan 14.</div>
+    <div class="note" lang="zh" style="border-color:var(--ok);background:var(--ok-soft)"><b>✅ 已与酒店确认：</b>1月12–13日8人入住，1月14日起减为5人。</div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0"><span lang="en">🛎️ Requests for the hotel</span><span lang="zh">🛎️ 向酒店提出的要求</span></h3>
+    <ul style="margin:0" lang="en">
+      <li>Jan 12: early check-in or bag drop. The 10:00 airport bus arrives around 12:00–12:30.</li>
+      <li>Jan 17: late checkout until 16:00.</li>
+      <li>Extra Le Labo travel-size bottles to take home 🧴😄</li>
+    </ul>
+    <ul style="margin:0" lang="zh">
+      <li>1月12日：提前入住或寄存行李。10:00机场巴士约12:00–12:30到达。</li>
+      <li>1月17日：延迟退房至16:00。</li>
+      <li>多要几瓶 Le Labo 旅行装带回家 🧴😄</li>
+    </ul>
   </div>
 </section>
 
@@ -161,12 +211,12 @@
   <p class="sub"><span lang="en">Breakfast at the hotel, lunch on the slopes, dinner as planned below (not booked yet).</span><span lang="zh">早餐在酒店，午餐在雪场，晚餐按下方安排（尚未预订）。</span></p>
   <div class="card">
     <div class="day"><div class="d"><b><span lang="en">Tue Jan 12</span><span lang="zh">1月12日 周二</span></b><span><span class="pax">👥 8</span></span></div>
-      <div lang="en"><b>Arrival day.</b> Travel from New Chitose (CTS) to Hanazono, about 2–2.5 hrs by road. Check in.
-        <ul><li>Pick up rental gear at DIAMOND X SPORT in the hotel. Pickup from 3 pm the day before your rental starts is free.</li>
+      <div lang="en"><b>Arrival day.</b> Catch the <b>10:00 bus</b> from New Chitose (Sapporo) airport to Hanazono, about 2–2.5 hrs, so arriving around 12:00–12:30. Drop bags or check in early if the room is ready, then ski the afternoon (PM 4-hour pass ¥8,400 online).
+        <ul><li>Pick up rental gear at Niseko Sports, Hanazono 308 (base area next to the hotel).</li>
         <li>Optional: night skiing at Hanazono if everyone has energy.</li>
         <li>Dinner ~19:00: Molière Montagne, in-hotel French (or China Kitchen). See <a href="#food">dinner plan</a>.</li></ul></div>
-      <div lang="zh"><b>抵达日。</b>从新千岁机场（CTS）前往花园，车程约2–2.5小时。办理入住。
-        <ul><li>在酒店内的 DIAMOND X SPORT 取租赁雪具。租期开始前一天下午3点起可免费提前取。</li>
+      <div lang="zh"><b>抵达日。</b>在新千岁（札幌）机场搭<b>10:00的巴士</b>前往花园，约2–2.5小时，大约12:00–12:30到达。房间准备好就提前入住，否则先寄存行李，下午去滑雪（下午4小时票网上¥8,400）。
+        <ul><li>在花园308（酒店旁的山脚中心）的 Niseko Sports 取租赁雪具。</li>
         <li>可选：体力充沛的话去花园夜滑。</li>
         <li>晚餐约19:00：酒店内法餐 Molière Montagne（或 China Kitchen）。见<a href="#food">晚餐安排</a>。</li></ul></div></div>
     <div class="day"><div class="d"><b><span lang="en">Wed Jan 13</span><span lang="zh">1月13日 周三</span></b><span><span class="pax">👥 8</span> · <span lang="en">Ski day 1</span><span lang="zh">滑雪第1天</span></span></div>
@@ -176,22 +226,22 @@
         <ul><li>8人最后一晚。19:30在比罗夫 AFURI 吃拉面和煎饺，轻松一点。</li></ul></div></div>
     <div class="day"><div class="d"><b><span lang="en">Thu Jan 14</span><span lang="zh">1月14日 周四</span></b><span><span class="pax">👥 5</span> · <span lang="en">Ski day 2</span><span lang="zh">滑雪第2天</span></span></div>
       <div lang="en">3 people leave (check-out timing TBD). The other 5 ski. With an All Mountain pass, cross over to Hirafu.
-        <ul><li>Lunch on the slopes in Hirafu or back at Hanazono.</li>
+        <ul><li>⭐ Lunch at <b>NEST813</b>, Ace Gondola summit station, Hirafu (must-do).</li>
         <li>Dinner 19:30: Tempura Araki, Hirafu (tempura omakase).</li></ul></div>
       <div lang="zh">3人离开（退房时间待定）。其余5人继续滑雪。持全山通票可滑到比罗夫。
-        <ul><li>午餐在比罗夫雪场或回到花园。</li>
+        <ul><li>⭐ 午餐在比罗夫 Ace 缆车山顶站的 <b>NEST813</b>（必去）。</li>
         <li>晚餐19:30：比罗夫 Tempura Araki（天妇罗主厨发办）。</li></ul></div></div>
     <div class="day"><div class="d"><b><span lang="en">Fri Jan 15</span><span lang="zh">1月15日 周五</span></b><span><span class="pax">👥 5</span> · <span lang="en">Ski day 3</span><span lang="zh">滑雪第3天</span></span></div>
       <div lang="en">Explore further: Niseko Village and Annupuri (All Mountain pass only). Go early on a powder day.<ul><li>Dinner 19:00: HITO by TACUBO, Hirafu (wood-fired Italian / steak).</li></ul></div>
       <div lang="zh">走得更远：二世谷村和安努普利（仅限全山通票）。如遇粉雪日请早点出发。<ul><li>晚餐19:00：比罗夫 HITO by TACUBO（柴火意大利菜 / 牛排）。</li></ul></div></div>
     <div class="day"><div class="d"><b><span lang="en">Sat Jan 16</span><span lang="zh">1月16日 周六</span></b><span><span class="pax">👥 5</span> · <span lang="en">Ski day 4</span><span lang="zh">滑雪第4天</span> · <span class="tag t-fire"><span lang="en">🎆 Fireworks</span><span lang="zh">🎆 烟花</span></span></span></div>
       <div lang="en">Last full ski day. Night ski until ~18:45 → <b>Hanazono "Fireworks Saturday" at 19:00</b> on the Hanazono slope → dinner at 20:00 at Sushi Mitsukawa in the hotel.
-        <ul><li>Return rental gear by 10 am the next day (free late return at DIAMOND X).</li></ul></div>
+        <ul><li>Keep gear overnight at Niseko Sports (free storage). Return it on Jan 17 before checkout.</li></ul></div>
       <div lang="zh">最后一个完整滑雪日。夜滑到约18:45 → <b>19:00 花园"周六烟花"</b>（花园雪道）→ 20:00在酒店 Sushi Mitsukawa 晚餐。
-        <ul><li>租赁雪具次日上午10点前归还（DIAMOND X 可免费延迟归还）。</li></ul></div></div>
+        <ul><li>雪具可免费寄存在 Niseko Sports 过夜，1月17日退房前归还。</li></ul></div></div>
     <div class="day"><div class="d"><b><span lang="en">Sun Jan 17</span><span lang="zh">1月17日 周日</span></b><span><span lang="en">Check out</span><span lang="zh">退房</span></span></div>
-      <div lang="en">Breakfast, return gear, check out, transfer to CTS.</div>
-      <div lang="zh">早餐，归还雪具，退房，前往新千岁机场。</div></div>
+      <div lang="en">Breakfast, then a free morning: ski or relax. <b>Late checkout requested until 16:00.</b> Return gear, check out, transfer to New Chitose (CTS).</div>
+      <div lang="zh">早餐，上午自由安排：滑雪或休息。<b>申请延迟退房至16:00。</b>归还雪具，退房，前往新千岁机场。</div></div>
   </div>
 
   <div class="fire" lang="en">
@@ -222,17 +272,18 @@
   </div>
 
   <div class="card scroll">
-    <h3 style="margin-top:0"><span lang="en">Adult: online price / counter price</span><span lang="zh">成人：网上价 / 柜台价</span></h3>
+    <h3 style="margin-top:0"><span lang="en">Adult prices</span><span lang="zh">成人价格</span></h3>
     <p class="sub" style="margin:0 0 8px"><span lang="en">The first online purchase adds a ¥500 keycard per person. It is not refundable and can be reloaded later.</span><span lang="zh">首次网上购票每人另加¥500 IC卡费，不退还，之后可充值续用。</span></p>
+    <p class="sub mobile-only" style="margin:0 0 8px"><span lang="en">Showing online prices. Counter prices are ¥700–3,300 more; see them on a larger screen.</span><span lang="zh">此处显示网上价。柜台价贵¥700–3,300，大屏幕可查看。</span></p>
     <table>
-      <tr><th><span lang="en">Days</span><span lang="zh">天数</span></th><th class="num"><span lang="en">All Mountain online</span><span lang="zh">全山 网上</span></th><th class="num"><span lang="en">All Mountain counter</span><span lang="zh">全山 柜台</span></th><th class="num"><span lang="en">Hanazono+Hirafu online</span><span lang="zh">花园+比罗夫 网上</span></th><th class="num"><span lang="en">Hanazono+Hirafu counter</span><span lang="zh">花园+比罗夫 柜台</span></th></tr>
-      <tr><td><span lang="en">1 day</span><span lang="zh">1天</span></td><td class="num">¥12,800</td><td class="num">¥13,500</td><td class="num">¥11,800</td><td class="num">¥12,500</td></tr>
-      <tr><td><span lang="en">2 days</span><span lang="zh">2天</span></td><td class="num">¥25,100</td><td class="num">¥26,500</td><td class="num">¥23,200</td><td class="num">¥24,500</td></tr>
-      <tr><td><span lang="en">3 days</span><span lang="zh">3天</span></td><td class="num">¥37,500</td><td class="num">¥39,500</td><td class="num">¥34,600</td><td class="num">¥36,500</td></tr>
-      <tr><td><b><span lang="en">4 days</span><span lang="zh">4天</span></b></td><td class="num"><b>¥49,800</b></td><td class="num">¥52,500</td><td class="num"><b>¥46,000</b></td><td class="num">¥48,500</td></tr>
-      <tr><td><span lang="en">5 days</span><span lang="zh">5天</span></td><td class="num">¥62,200</td><td class="num">¥65,500</td><td class="num">¥57,400</td><td class="num">¥60,500</td></tr>
-      <tr><td><span lang="en">PM 4 hours</span><span lang="zh">下午4小时</span></td><td class="num">—</td><td class="num">—</td><td class="num">¥8,400</td><td class="num">¥8,900</td></tr>
-      <tr><td><span lang="en">Night skiing</span><span lang="zh">夜滑</span></td><td class="num">—</td><td class="num">—</td><td class="num">¥6,200</td><td class="num">¥6,900</td></tr>
+      <tr><th><span lang="en">Days</span><span lang="zh">天数</span></th><th class="num"><span lang="en">All Mountain online</span><span lang="zh">全山 网上</span></th><th class="num ctr"><span lang="en">All Mountain counter</span><span lang="zh">全山 柜台</span></th><th class="num"><span lang="en">Hanazono+Hirafu online</span><span lang="zh">花园+比罗夫 网上</span></th><th class="num ctr"><span lang="en">Hanazono+Hirafu counter</span><span lang="zh">花园+比罗夫 柜台</span></th></tr>
+      <tr><td><span lang="en">1 day</span><span lang="zh">1天</span></td><td class="num">¥12,800</td><td class="num ctr">¥13,500</td><td class="num">¥11,800</td><td class="num ctr">¥12,500</td></tr>
+      <tr><td><span lang="en">2 days</span><span lang="zh">2天</span></td><td class="num">¥25,100</td><td class="num ctr">¥26,500</td><td class="num">¥23,200</td><td class="num ctr">¥24,500</td></tr>
+      <tr><td><span lang="en">3 days</span><span lang="zh">3天</span></td><td class="num">¥37,500</td><td class="num ctr">¥39,500</td><td class="num">¥34,600</td><td class="num ctr">¥36,500</td></tr>
+      <tr><td><b><span lang="en">4 days</span><span lang="zh">4天</span></b></td><td class="num"><b>¥49,800</b></td><td class="num ctr">¥52,500</td><td class="num"><b>¥46,000</b></td><td class="num ctr">¥48,500</td></tr>
+      <tr><td><span lang="en">5 days</span><span lang="zh">5天</span></td><td class="num">¥62,200</td><td class="num ctr">¥65,500</td><td class="num">¥57,400</td><td class="num ctr">¥60,500</td></tr>
+      <tr><td><span lang="en">PM 4 hours</span><span lang="zh">下午4小时</span></td><td class="num">—</td><td class="num ctr">—</td><td class="num">¥8,400</td><td class="num ctr">¥8,900</td></tr>
+      <tr><td><span lang="en">Night skiing</span><span lang="zh">夜滑</span></td><td class="num">—</td><td class="num ctr">—</td><td class="num">¥6,200</td><td class="num ctr">¥6,900</td></tr>
     </table>
   </div>
 
@@ -246,26 +297,26 @@
   <p class="sub"><span lang="en">Adult prices in yen for 2026–27. Poles come with skis unless noted.</span><span lang="zh">2026–27季成人价格，单位日元。除另有说明外，租雪板含雪杖。</span></p>
 
   <div class="card scroll">
-    <table>
+    <table class="stack">
       <tr><th><span lang="en">Shop</span><span lang="zh">店铺</span></th><th><span lang="en">Where</span><span lang="zh">位置</span></th><th class="num"><span lang="en">Skis + boots, 1 day</span><span lang="zh">雪板+雪鞋 1天</span></th><th class="num"><span lang="en">3 days</span><span lang="zh">3天</span></th><th class="num"><span lang="en">Helmet, 3 days</span><span lang="zh">头盔 3天</span></th><th><span lang="en">Notes</span><span lang="zh">备注</span></th></tr>
-      <tr><td><b>DIAMOND X SPORT</b> <span class="tag t-info"><span lang="en">In hotel</span><span lang="zh">酒店内</span></span></td><td><span lang="en">Inside Park Hyatt</span><span lang="zh">柏悦酒店内</span></td><td class="num">¥14,500</td><td class="num">¥43,500</td><td class="num">¥6,600</td>
-        <td><span lang="en">Premium gear only. Free pickup from 3 pm the day before, free return by 10 am the day after, free hot wax.</span><span lang="zh">仅高端雪具。前一天下午3点起免费提前取，次日上午10点前免费归还，免费热打蜡。</span> Tel +81 136-27-1264</td></tr>
-      <tr><td><b>Niseko Sports</b>, <span lang="en">Premium</span><span lang="zh">高端款</span></td><td><span lang="en">Hanazono 308 (base)</span><span lang="zh">花园308（山脚）</span></td><td class="num">¥10,500</td><td class="num">¥24,500</td><td class="num">¥5,000</td>
-        <td><span lang="en">Free overnight storage, free hot wax, gear swaps allowed.</span><span lang="zh">免费过夜寄存，免费热打蜡，可更换雪具。</span> Tel +81 136-23-0911</td></tr>
-      <tr><td><b>Niseko Sports</b>, <span lang="en">Economy</span><span lang="zh">经济款</span></td><td><span lang="en">Hanazono 308 (base)</span><span lang="zh">花园308（山脚）</span></td><td class="num">¥8,500</td><td class="num">¥21,000</td><td class="num">¥5,000</td>
-        <td><span lang="en">Cheapest option at the base</span><span lang="zh">山脚最便宜的选择</span></td></tr>
-      <tr><td><b>Rhythm Japan</b>, <span lang="en">Standard</span><span lang="zh">标准款</span></td><td><span lang="en">Hirafu (no Hanazono shop)</span><span lang="zh">比罗夫（花园无门店）</span></td><td class="num">¥9,500</td><td class="num">¥22,200</td><td class="num">¥5,600</td>
-        <td><span lang="en">10% off if booked 48 hrs ahead. Free first-day shuttle to Hanazono. Poles are extra (¥2,550 for 3 days).</span><span lang="zh">提前48小时预订享9折。首日免费接送至花园。雪杖另计（3天¥2,550）。</span></td></tr>
+      <tr><td><b>Niseko Sports</b>, <span lang="en">Premium</span><span lang="zh">高端款</span> <span class="tag t-ok"><span lang="en">Recommended</span><span lang="zh">推荐</span></span></td><td data-en="Where" data-zh="位置"><span lang="en">Hanazono 308 (base)</span><span lang="zh">花园308（山脚）</span></td><td class="num" data-en="Skis + boots, 1 day" data-zh="雪板+雪鞋 1天">¥10,500</td><td class="num" data-en="3 days" data-zh="3天">¥24,500</td><td class="num" data-en="Helmet, 3 days" data-zh="头盔 3天">¥5,000</td>
+        <td class="note-cell"><span lang="en">Free overnight storage, free hot wax, gear swaps allowed.</span><span lang="zh">免费过夜寄存，免费热打蜡，可更换雪具。</span> Tel +81 136-23-0911</td></tr>
+      <tr><td><b>Niseko Sports</b>, <span lang="en">Economy</span><span lang="zh">经济款</span></td><td data-en="Where" data-zh="位置"><span lang="en">Hanazono 308 (base)</span><span lang="zh">花园308（山脚）</span></td><td class="num" data-en="Skis + boots, 1 day" data-zh="雪板+雪鞋 1天">¥8,500</td><td class="num" data-en="3 days" data-zh="3天">¥21,000</td><td class="num" data-en="Helmet, 3 days" data-zh="头盔 3天">¥5,000</td>
+        <td class="note-cell"><span lang="en">Cheapest option at the base</span><span lang="zh">山脚最便宜的选择</span></td></tr>
+      <tr><td><b>Rhythm Japan</b>, <span lang="en">Standard</span><span lang="zh">标准款</span></td><td data-en="Where" data-zh="位置"><span lang="en">Hirafu (no Hanazono shop)</span><span lang="zh">比罗夫（花园无门店）</span></td><td class="num" data-en="Skis + boots, 1 day" data-zh="雪板+雪鞋 1天">¥9,500</td><td class="num" data-en="3 days" data-zh="3天">¥22,200</td><td class="num" data-en="Helmet, 3 days" data-zh="头盔 3天">¥5,600</td>
+        <td class="note-cell"><span lang="en">10% off if booked 48 hrs ahead. Free first-day shuttle to Hanazono. Poles are extra (¥2,550 for 3 days).</span><span lang="zh">提前48小时预订享9折。首日免费接送至花园。雪杖另计（3天¥2,550）。</span></td></tr>
+      <tr><td><b>DIAMOND X SPORT</b> <span class="tag t-warn"><span lang="en">Not recommended</span><span lang="zh">不推荐</span></span></td><td data-en="Where" data-zh="位置"><span lang="en">Inside Park Hyatt</span><span lang="zh">柏悦酒店内</span></td><td class="num" data-en="Skis + boots, 1 day" data-zh="雪板+雪鞋 1天">¥14,500</td><td class="num" data-en="3 days" data-zh="3天">¥43,500</td><td class="num" data-en="Helmet, 3 days" data-zh="头盔 3天">¥6,600</td>
+        <td class="note-cell"><span lang="en">Premium gear only. Free pickup from 3 pm the day before, free return by 10 am the day after, free hot wax.</span><span lang="zh">仅高端雪具。前一天下午3点起免费提前取，次日上午10点前免费归还，免费热打蜡。</span> Tel +81 136-27-1264</td></tr>
     </table>
   </div>
   <p class="sub"><span lang="en">Jacket/pants rental: DIAMOND ¥15,500 for 3 days · Niseko Sports ¥8,000 for 3 days · Rhythm ¥7,800 for 3 days (each item).</span><span lang="zh">雪服/雪裤租赁（每件）：DIAMOND 3天¥15,500 · Niseko Sports 3天¥8,000 · Rhythm 3天¥7,800。</span></p>
   <div class="note"><b><span lang="en">Book online at least 4 days ahead</span><span lang="zh">请至少提前4天网上预订</span></b> <span lang="en">(after that, Hanazono shops only take bookings in person):</span><span lang="zh">（之后花园的店铺只接受到店预订）：</span>
-    <a href="https://book.hanazononiseko.com/public/booking/order02.jsf?mv=1&vs=winter&slcid=8a80818a886ea2170188701525fa6e6e">DIAMOND X</a> ·
-    <a href="https://book.hanazononiseko.com/public/booking/order02.jsf?mv=1&vs=winter&slcid=2c9990187184e3a901719b62403949ec">Niseko Sports <span lang="en">Hanazono 308</span><span lang="zh">花园308</span></a> ·
-    <a href="https://www.rhythmjapan.com/winter-rentals-services">Rhythm Japan</a>
+    <a href="https://book.hanazononiseko.com/public/booking/order02.jsf?mv=1&vs=winter&slcid=2c9990187184e3a901719b62403949ec"><b>Niseko Sports <span lang="en">Hanazono 308</span><span lang="zh">花园308</span></b></a> ·
+    <a href="https://www.rhythmjapan.com/winter-rentals-services">Rhythm Japan</a> ·
+    <a href="https://book.hanazononiseko.com/public/booking/order02.jsf?mv=1&vs=winter&slcid=8a80818a886ea2170188701525fa6e6e">DIAMOND X</a>
   </div>
-  <p lang="en"><b>Suggestion:</b> Rent at <b>Niseko Sports Hanazono 308</b> for the best value at the base. Use DIAMOND X if you'd rather pay more to keep gear inside the hotel.</p>
-  <p lang="zh"><b>建议：</b>在<b>花园308的 Niseko Sports</b> 租，山脚性价比最高。如果愿意多花钱、让雪具留在酒店内，选 DIAMOND X。</p>
+  <p lang="en"><b>Plan:</b> Rent at <b>Niseko Sports, Hanazono 308</b> (Premium). Better value than DIAMOND X SPORT in the hotel, which we're skipping. Free overnight gear storage at the shop.</p>
+  <p lang="zh"><b>安排：</b>在<b>花园308的 Niseko Sports</b> 租（高端款）。比酒店内的 DIAMOND X SPORT 更划算，DIAMOND X 不考虑。店内可免费过夜寄存雪具。</p>
 </section>
 
 <!-- MAP -->
@@ -299,9 +350,25 @@
     <div class="card"><span class="tag t-ok"><span lang="en">Covered</span><span lang="zh">已包含</span></span><h3 style="margin-top:8px"><span lang="en">🍳 Breakfast</span><span lang="zh">🍳 早餐</span></h3>
       <p style="margin:0"><span lang="en">At the hotel every morning (The Lounge).</span><span lang="zh">每天早上在酒店享用（The Lounge）。</span></p></div>
     <div class="card"><span class="tag t-ok"><span lang="en">On the slopes</span><span lang="zh">雪场用餐</span></span><h3 style="margin-top:8px"><span lang="en">🍜 Lunch</span><span lang="zh">🍜 午餐</span></h3>
-      <p style="margin:0"><span lang="en">On the mountain each ski day: Hanazono 308 at the base, or mountain restaurants in Hirafu when you cross over. Café Hana 2 at the hotel is a quick option.</span><span lang="zh">每个滑雪日在山上吃：山脚的花园308，或滑到比罗夫时在那边的山上餐厅。酒店内的 Café Hana 2 适合快速用餐。</span></p></div>
+      <p style="margin:0"><span lang="en">On the mountain each ski day. ⭐ <b>NEST813 is a must</b> (see below). Also: HANAZONO EDGE (glass-walled, ski-in at Hanazono), Hanazono 308 at the base, or Café Hana 2 in the hotel.</span><span lang="zh">每个滑雪日在山上吃。⭐ <b>NEST813 必去</b>（见下方）。其他选择：花园的 HANAZONO EDGE（全玻璃、可直接滑进）、山脚的花园308，或酒店内的 Café Hana 2。</span></p></div>
     <div class="card"><span class="tag t-warn"><span lang="en">Planned · not booked</span><span lang="zh">已规划 · 未预订</span></span><h3 style="margin-top:8px"><span lang="en">🍽️ Dinner</span><span lang="zh">🍽️ 晚餐</span></h3>
       <p style="margin:0"><span lang="en">A restaurant is picked for every night and availability was live-checked on Nov 24. Nothing is booked yet.</span><span lang="zh">每晚的餐厅已选好，11月24日查询过实时空位。目前都还没有预订。</span></p></div>
+  </div>
+
+  <div class="card" style="border:2px solid var(--accent)">
+    <h3 style="margin-top:0">⭐ <span lang="en">Must-do lunch: NEST813</span><span lang="zh">必吃午餐：NEST813</span></h3>
+    <ul lang="en" style="margin:0">
+      <li>On the slope at Grand Hirafu: 2nd floor of the <b>Ace Gondola summit station</b>, 813 m up, with big views of Mt. Yotei. Opened Dec 2025; the highest restaurant at Hirafu.</li>
+      <li>Ski over from Hanazono (the two connect over the top). Covered by both the All Mountain and the Hanazono + Hirafu pass.</li>
+      <li>Hours last season: café 8:30–16:00, lunch 11:00–14:30. Check the 2026–27 hours before going. Go before noon to beat the rush.</li>
+      <li>Planned for <b>Thu Jan 14</b> (Hirafu day). Any clear-weather day works, since the view is the point.</li>
+    </ul>
+    <ul lang="zh" style="margin:0">
+      <li>位于比罗夫雪场山上：<b>Ace 缆车山顶站</b>2楼，海拔813米，可远眺羊蹄山。2025年12月开业，是比罗夫海拔最高的餐厅。</li>
+      <li>从花园滑过去即可（两个雪场在山顶相连）。全山通票和花园+比罗夫票都可以用。</li>
+      <li>上季营业时间：咖啡 8:30–16:00，午餐 11:00–14:30。出发前请确认2026–27季时间。中午前到，避开人潮。</li>
+      <li>安排在<b>1月14日（周四）</b>比罗夫日。任何晴天都可以，看风景最重要。</li>
+    </ul>
   </div>
 
   <div class="card" lang="en">
@@ -491,16 +558,19 @@
   <h2><span lang="en">To-do</span><span lang="zh">待办事项</span></h2>
   <div class="card">
     <ul class="check">
-      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Confirm with Park Hyatt how to fit 8 people on Jan 12–13 (extra beds or a 3rd room)</span><span lang="zh">向柏悦确认1月12–13日8人的住宿安排（加床或加订第3间房）</span></li>
-      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Book Jan 12 Molière for 8 by phone (0136-27-1200), or China Kitchen instead</span><span lang="zh">致电 0136-27-1200 预订1月12日 Molière 8人，或改订 China Kitchen</span></li>
+            <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Book Jan 12 Molière for 8 by phone (0136-27-1200), or China Kitchen instead</span><span lang="zh">致电 0136-27-1200 预订1月12日 Molière 8人，或改订 China Kitchen</span></li>
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Book Jan 13 AFURI 19:30 for 8 on TableCheck</span><span lang="zh">在 TableCheck 预订1月13日 AFURI 19:30 8人</span></li>
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Check Tempura Araki for Jan 14 on OMAKASE yourself (blocked for automated checks)</span><span lang="zh">自己在 OMAKASE 上查1月14日 Tempura Araki 空位（自动查询被拦截）</span></li>
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Book Jan 15 HITO by TACUBO for 5 on TableCheck</span><span lang="zh">在 TableCheck 预订1月15日 HITO by TACUBO 5人</span></li>
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Book Jan 16 Sushi Mitsukawa 20:00 for 5 now (last slot left)</span><span lang="zh">尽快预订1月16日 Sushi Mitsukawa 20:00 5人（最后一个时段）</span></li>
       <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Buy lift passes online (All Mountain for 5 people; short passes for the 3 leaving early)</span><span lang="zh">网上购买缆车票（5人全山通票；提前离开的3人买短期票）</span></li>
-      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Book ski rental at least 4 days ahead (by about Jan 8)</span><span lang="zh">至少提前4天预订雪具租赁（约1月8日前）</span></li>
-      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Book an airport transfer from New Chitose (CTS) to Hanazono for 8 people</span><span lang="zh">预订8人从新千岁机场（CTS）到花园的接送</span></li>
+      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Book Niseko Sports (Hanazono 308) rental at least 4 days ahead (by about Jan 8)</span><span lang="zh">至少提前4天预订花园308 Niseko Sports 雪具（约1月8日前）</span></li>
+      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Confirm 10:00 airport bus seats for 8 (New Chitose → Hanazono, Jan 12)</span><span lang="zh">确认1月12日10:00机场巴士8人座位（新千岁 → 花园）</span></li>
+      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Request early check-in / bag drop on Jan 12</span><span lang="zh">申请1月12日提前入住 / 寄存行李</span></li>
+      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Request late checkout until 16:00 on Jan 17</span><span lang="zh">申请1月17日延迟退房至16:00</span></li>
+      <li><span class="tag t-warn"><span lang="en">Open</span><span lang="zh">待办</span></span> <span lang="en">Ask for extra Le Labo small bottles to take home 🧴</span><span lang="zh">向酒店多要几瓶 Le Labo 小瓶装带回家 🧴</span></li>
       <li><span class="tag t-ok"><span lang="en">Done</span><span lang="zh">已完成</span></span> <span lang="en">Hotel booked: Suite King + Double, Jan 12–17</span><span lang="zh">酒店已订：大床套房 + 双人房，1月12–17日</span></li>
+      <li><span class="tag t-ok"><span lang="en">Done</span><span lang="zh">已完成</span></span> <span lang="en">Confirmed with the hotel: 8 people on Jan 12–13</span><span lang="zh">已与酒店确认：1月12–13日8人</span></li>
     </ul>
   </div>
 </section>
